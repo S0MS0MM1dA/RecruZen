@@ -340,3 +340,160 @@ p.footer-copywrite {
     padding-top: 20px;
     border-top: 1px solid #a4a4a4;
 }
+
+
+/*. - -- -  -Login -  - */
+.user-type-div {
+    width: fit-content;
+    padding: 5px;
+    margin-bottom: 15px;
+}
+
+.login-div {
+    width: 400px;
+    margin: auto;
+    padding: 30px 10px;
+    align-items: center;
+}
+
+.login-header {
+    margin-bottom: 20px;
+    padding: 5px;
+    text-align: center;
+}
+
+.login-header h2.logo-login {
+    margin-bottom: 6px;
+}
+
+.login-header p {
+    color: #795548;
+}
+
+.login-content {
+    padding: 20px 25px 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+h3.login-title {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+p.sub-title {
+    font-size: 15px;
+    color: #4f4f4f;
+}
+
+.login-head {
+    margin-bottom: 15px;
+}
+
+.user-type-div {
+    border: 1px solid black;
+    border-radius: 7px;
+    padding: 8px 20px;
+    justify-content: center;
+    display: flex;
+    width: auto;
+    background-color: #e5e5e5;
+}
+button.type-btn {
+    padding: 5px 40px;
+    border: none;
+    color: black;
+    background-color: #e5e5e5;
+}
+
+
+
+.login-user-info {
+    margin: 10px 0;
+}
+
+.info-box {
+    padding: 2px;
+    margin-bottom: 10px;
+}
+
+label.login-labels {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 19px;
+}
+input.input {
+    padding: 10px 12px;
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.show-forget-btn {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px auto 25px;
+}
+
+a.forget-pass-btn {
+    text-decoration: none;
+    color: #4a4af9;
+}
+
+button.job-seeker-login {
+    width: 100%;
+    display: block;
+    margin: auto;
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    background-color: #4949ffbd;
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 18px;
+}
+
+.goole-div{
+    text-align: center;
+    margin: 15px auto;
+}
+.goole-div .divider {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #5f6368;
+}
+
+.google-login {
+    align-items: center;
+    padding: 6px 15px;
+    background: #ffffff;
+    border: 1px solid #afafaf;
+    text-decoration: none;
+    border-radius: 4px;
+    color: #3c4043;
+    font-size: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+.google-svg {
+    width: 20px;
+    height: 20px;
+}
+
+
+
+.login-user-info p {
+    text-align: center;
+    padding: 2px;
+}
+.register-here{
+    text-decoration: none;
+    margin-left: 3px;
+    color: #4a4af9;
+}
