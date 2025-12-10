@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Register</title>
     <link rel="stylesheet" href="../css/style.css" />
     <link
       rel="stylesheet"
@@ -23,7 +23,7 @@
           </div>
           <div class="account-content">
             <div class="account-head">
-              <h3 class="account-title">Login</h3>
+              <h3 class="account-title">Register</h3>
               <p class="sub-title">Choose your account type to continue</p>
             </div>
             <div class="user-type-div">
@@ -32,6 +32,15 @@
             </div>
             <div class="account-user-info">
               <form class="account-form">
+                <div class="info-box">
+                  <label class="account-labels" for="name">Full Name</label>
+                  <input
+                    class="input"
+                    name="name"
+                    type="text"
+                    placeholder="RecruZen"
+                  />
+                </div>
                 <div class="info-box">
                   <label class="account-labels" for="email">Email</label>
                   <input
@@ -50,6 +59,17 @@
                     placeholder="......."
                   />
                 </div>
+                <div class="info-box">
+                  <label class="account-labels" for="password"
+                    >Confirm Password</label
+                  >
+                  <input
+                    class="input"
+                    name="password"
+                    type="password"
+                    placeholder="......."
+                  />
+                </div>
                 <div class="show-forget-btn">
                   <label class="show-pass">
                     <input type="checkbox" />
@@ -57,7 +77,9 @@
                   </label>
                   <a href="#" class="forget-pass-btn">Forget Password?</a>
                 </div>
-                <button class="job-seeker-account">Login as Job Seeker</button>
+                <button class="job-seeker-account">
+                  Register as Job Seeker
+                </button>
               </form>
               <div class="goole-div">
                 <span class="divider">OR</span>

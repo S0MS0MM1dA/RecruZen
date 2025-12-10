@@ -342,40 +342,40 @@ p.footer-copywrite {
 }
 
 
-/*. - -- -  -Login -  - */
+/*. - -- -  - Login -  - */
 .user-type-div {
     width: fit-content;
     padding: 5px;
     margin-bottom: 15px;
 }
 
-.login-div {
-    width: 400px;
+.account-div {
+    width: 500px;
     margin: auto;
     padding: 30px 10px;
     align-items: center;
 }
 
-.login-header {
+.account-header {
     margin-bottom: 20px;
     padding: 5px;
     text-align: center;
 }
 
-.login-header h2.logo-login {
+.account-header h2.logo-account {
     margin-bottom: 6px;
 }
 
-.login-header p {
+.account-header p {
     color: #795548;
 }
 
-.login-content {
+.account-content {
     padding: 20px 25px 15px;
     border: 1px solid black;
     border-radius: 10px;
 }
-h3.login-title {
+h3.account-title {
     font-size: 25px;
     margin-bottom: 5px;
 }
@@ -385,7 +385,7 @@ p.sub-title {
     color: #4f4f4f;
 }
 
-.login-head {
+.account-head {
     margin-bottom: 15px;
 }
 
@@ -407,7 +407,7 @@ button.type-btn {
 
 
 
-.login-user-info {
+.account-user-info {
     margin: 10px 0;
 }
 
@@ -416,7 +416,7 @@ button.type-btn {
     margin-bottom: 10px;
 }
 
-label.login-labels {
+label.account-labels {
     display: block;
     margin-bottom: 3px;
     font-size: 19px;
@@ -443,7 +443,7 @@ a.forget-pass-btn {
     color: #4a4af9;
 }
 
-button.job-seeker-login {
+button.job-seeker-account {
     width: 100%;
     display: block;
     margin: auto;
@@ -467,7 +467,7 @@ button.job-seeker-login {
     color: #5f6368;
 }
 
-.google-login {
+.google-account {
     align-items: center;
     padding: 6px 15px;
     background: #ffffff;
@@ -488,7 +488,7 @@ button.job-seeker-login {
 
 
 
-.login-user-info p {
+.account-user-info p {
     text-align: center;
     padding: 2px;
 }
