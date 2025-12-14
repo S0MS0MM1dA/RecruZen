@@ -148,7 +148,7 @@ section.dashboard-status-div {
 
 /*. Table Tracker.   */
 
-section.dashboard-applications-div {
+section.dashboard-tracker-div {
   background: white;
   border-radius: 12px;
   padding: 20px;
@@ -195,4 +195,20 @@ a.view-jobs-btn {
   background: #e8f0fbed;
   padding: 5px 8px;
   border-radius: 20px;
+}
+
+/*------Manage Jobs ------*/
+
+section.dashboard-tracker-div {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+span.status {
+  background: #b8e0b8db;
+  padding: 4px 7px;
+  color: #19b519;
+  font-size: 13px;
+  border-radius: 13px;
 }

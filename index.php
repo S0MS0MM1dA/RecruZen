@@ -24,17 +24,17 @@
             <ul class="nav-menu">
               <li><a href="#welcome-section">Home</a></li>
               <li><a href="">Jobs</a></li>
-              <li><a href="assets/html/dashboard.html">About</a></li>
+              <li><a href="assets/html/dashboard.php">About</a></li>
               <li><a href="">Contact</a></li>
             </ul>
           </div>
           <div class="nav-btn-div">
             <ul>
               <li>
-                <a class="login-btn btn" href="assets/html/login.html">Login</a>
+                <a class="login-btn btn" href="assets/html/login.php">Login</a>
               </li>
               <li>
-                <a class="register-btn btn" href="assets/html/registration.html"
+                <a class="register-btn btn" href="assets/html/registration.php"
                   >Create Account</a
                 >
               </li>
