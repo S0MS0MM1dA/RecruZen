@@ -196,6 +196,51 @@ a.view-jobs-btn {
   padding: 5px 8px;
   border-radius: 20px;
 }
+/*  ------- saved jobs--- */
+
+.saved-job-card {
+  width: 400px;
+  padding: 25px 20px;
+  border: 1px solid #cdcdcd;
+}
+
+.saved-job-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.saved-job-avatar {
+  display: inline-block;
+  padding: 6px 15px;
+  background: #68a5da;
+  color: white;
+  border-radius: 9px;
+  font-size: 22px;
+}
+
+h3.saved-job-title {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+p.saved-job-company {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #888888;
+}
+
+.saved-job-info {
+  font-size: 14px;
+  gap: 12px;
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.saved-job-actions {
+  margin: 5px;
+}
 
 /*------Manage Jobs ------*/
 

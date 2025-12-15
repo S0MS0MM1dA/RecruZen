@@ -21,14 +21,14 @@
       <div class="dashboard-main">
         <div class="dashboard-container">
           <div class="dashboard-header">
-            <h3>Saved Jobs!</h3>
-            <p>View and manage all your job postings</p>
+            <h3>Applied Jobs!</h3>
+            <p>Track Jobs that you applied.!!</p>
           </div>
 
           <section class="dashboard-tracker-div">
             <div class="tracker-header">
-              <h4>Your Post Details</h4>
-              <p>Track yous job Posting</p>
+              <h4>Your Application Details</h4>
+              <p>Track yous job applications</p>
             </div>
             <div class="tracker-table-div">
               <table class="tracker-table">

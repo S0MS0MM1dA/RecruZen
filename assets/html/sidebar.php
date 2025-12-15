@@ -33,12 +33,12 @@
             >
           </div>
           <div class="dash-btn">
-            <a href="savedJobs.php"
+            <a href="saveJobs.php"
               ><i class="fa-solid fa-bookmark"></i><span>Saved Jobs</span></a
             >
           </div>
           <div class="dash-btn">
-            <a href="#">
+            <a href="appliedJobs.php">
               <i class="fa-solid fa-bars-progress"></i
               ><span>Applied Jobs</span></a
             >
