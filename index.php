@@ -25,7 +25,7 @@
               <li><a href="#welcome-section">Home</a></li>
               <li><a href="">Jobs</a></li>
               <li><a href="assets/html/dashboard.php">About</a></li>
-              <li><a href="">Contact</a></li>
+              <li><a href="assets/html/postjob.php">Contact</a></li>
             </ul>
           </div>
           <div class="nav-btn-div">
@@ -146,7 +146,7 @@
                 </div>
               </div>
               <div class="job-btn-div">
-                <a class="job-details-btn" href="assets/html/jobDetails.html">View Details</a>
+                <a class="job-details-btn" href="assets/html/jobDetails.php">View Details</a>
               </div>
             </div>
           </div>
