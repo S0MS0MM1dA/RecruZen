@@ -199,9 +199,12 @@ a.view-jobs-btn {
 /*  ------- saved jobs--- */
 
 .saved-job-card {
-  width: 400px;
-  padding: 25px 20px;
-  border: 1px solid #cdcdcd;
+  /* width: 400px; */
+  padding: 22px 20px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: white;
+  box-shadow: -3px 6px 17px 1px rgba(0, 0, 0, 0.05);
 }
 
 .saved-job-header {
@@ -211,12 +214,16 @@ a.view-jobs-btn {
 }
 
 .saved-job-avatar {
-  display: inline-block;
-  padding: 6px 15px;
-  background: #68a5da;
-  color: white;
+  width: 45px;
+  height: 45px;
+  color: #2a68ef;
   border-radius: 9px;
   font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e6effb;
+  font-weight: 500;
 }
 
 h3.saved-job-title {
@@ -232,16 +239,50 @@ p.saved-job-company {
 }
 
 .saved-job-info {
-  font-size: 14px;
-  gap: 12px;
+  font-size: 12px;
+  gap: 20px;
   display: flex;
   margin-bottom: 15px;
+  color: #6b7280;
 }
 
 .saved-job-actions {
-  margin: 5px;
+  display: flex;
+  justify-content: space-around;
+}
+a.action-btn {
+  text-decoration: none;
+  padding: 8px 15px;
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+  font-size: 13px;
+  width: 45%;
+  text-align: center;
+}
+a.apply-btn.action-btn {
+  background: #2a68ef;
+  color: white;
 }
 
+a.details-btn.action-btn {
+  background: whitesmoke;
+  color: black;
+}
+
+.saved-job-info i {
+  color: #2563eb;
+}
+
+i.saved-job-bookmark {
+  color: #2762ea;
+  font-size: 20px;
+}
+
+.saved-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
 /*------Manage Jobs ------*/
 
 section.dashboard-tracker-div {

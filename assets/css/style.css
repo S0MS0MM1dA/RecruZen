@@ -253,7 +253,7 @@ a.job-details-btn {
   padding: 10px 82px;
 }
 
-.job-details {
+.job-info {
   padding-left: 10px;
 }
 .job-type {
@@ -490,4 +490,64 @@ button.job-seeker-account {
   text-decoration: none;
   margin-left: 3px;
   color: #4a4af9;
+}
+
+/*.   Jov Details.    */
+.job-details-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  gap: 30px;
+  margin: 25px 0;
+}
+.job-details {
+  width: 70%;
+  padding: 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+.job-action {
+  width: 30%;
+  padding: 20px 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+.job-header {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.company-logo img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.job-title-box {
+  display: block;
+}
+
+.job-action a.action-btn {
+  text-decoration: none;
+  padding: 8px 15px;
+  border: 1px solid #cfcfcf;
+  border-radius: 5px;
+  font-size: 13px;
+  text-align: center;
+  width: 100%;
+  display: block;
+  margin-bottom: 6px;
+}
+.job-action a.apply-btn.action-btn {
+  background: #2a68ef;
+  color: white;
+}
+
+.job-action a.details-btn.action-btn {
+  background: whitesmoke;
+  color: black;
+}
+.job-action-btn {
+  margin-bottom: 20px;
 }

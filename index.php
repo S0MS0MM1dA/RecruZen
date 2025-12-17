@@ -114,12 +114,12 @@
               <div class="job-content">
                 <div class="job-logo">
                   <img
-                    src="company.png"
+                    src="assets/images/google_logo.svg"
                     alt="Company Logo"
                     class="job-logo-img"
                   />
                 </div>
-                <div class="job-details">
+                <div class="job-info">
                   <div class="job-title">
                     <h3>Senior React Developer</h3>
                     <span class="job-type full-time">Full Time</span>
@@ -146,7 +146,7 @@
                 </div>
               </div>
               <div class="job-btn-div">
-                <a class="job-details-btn" href="#">View Details</a>
+                <a class="job-details-btn" href="assets/html/jobDetails.html">View Details</a>
               </div>
             </div>
           </div>
