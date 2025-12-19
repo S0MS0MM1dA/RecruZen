@@ -24,13 +24,13 @@
           </div>
           <div class="post-jobs-container">
             <form action="" class="post-job-form" method="POST">
-              <section class="job-information">
-                <h3 class="job-subtitle">Basic Information</h3>
+              <section class="form-section">
+                <h3 class="section-title">Basic Information</h3>
 
-                <div class="job-inputs">
-                  <div class="job-input-row">
-                    <div class="info-box job-title-box">
-                      <label for="title" class="job-labels">Job Title</label>
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-field job-title-box">
+                      <label for="title" class="form-label">Job Title</label>
                       <input
                         id="title"
                         type="text"
@@ -39,99 +39,99 @@
                       />
                     </div>
                   </div>
-                  <div class="job-input-row">
-                    <div class="info-box">
-                      <label for="category" class="job-labels">Category</label>
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="category" class="form-label">Category</label>
                       <input id="category" type="text" name="category" />
                     </div>
-                    <div class="info-box">
-                      <label class="job-labels">Job Type</label>
+                    <div class="form-field">
+                      <label class="form-label">Job Type</label>
                       <input id="jobType" type="text" name="type" />
                     </div>
                   </div>
                 </div>
               </section>
 
-              <section class="job-information">
-                <h3 class="job-subtitle">Location & Compensation</h3>
+              <section class="form-section">
+                <h3 class="section-title">Location & Compensation</h3>
 
-                <div class="job-inputs">
-                  <div class="job-input-row">
-                    <div class="info-box">
-                      <label for="location" class="job-labels">Location</label>
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="location" class="form-label">Location</label>
                       <input id="location" type="text" name="location" />
                     </div>
-                    <div class="info-box">
-                      <label for="workplace" class="job-labels"
+                    <div class="form-field">
+                      <label for="workplace" class="form-label"
                         >Workplace Type</label
                       >
                       <input id="workplace" type="text" name="workplace" />
                     </div>
                   </div>
-                  <div class="job-input-row">
-                    <div class="info-box">
-                      <label for="salary" class="job-labels"
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="salary" class="form-label"
                         >Minimum Salary</label
                       >
-                      <input id="minimumSalary" type="text" name="max_salary" />
+                      <input id="minimumSalary" type="text" name="min_salary" />
                     </div>
-                    <div class="info-box">
-                      <label for="salary" class="job-labels"
+                    <div class="form-field">
+                      <label for="salary" class="form-label"
                         >Maximum Salary</label
                       >
-                      <input id="maximumSalary" type="text" name="min_salary" />
+                      <input id="maximumSalary" type="text" name="max_salary" />
                     </div>
                   </div>
                 </div>
               </section>
-              <section class="job-information">
-                <h3 class="job-subtitle">Skills</h3>
-                <div class="job-input-row">
-                  <div class="info-box skills-wrapper">
+              <section class="form-section">
+                <h3 class="section-title">Skills</h3>
+                <div class="form-row">
+                  <div class="form-field skills-wrapper">
                     <input class="skills" type="text" name="skills" />
-                    <button type="button">Add Skills</button>
+                    <button type="button" class="add-skills-btn">Add Skills</button>
                   </div>
                 </div>
               </section>
-              <section class="job-information">
-                <h3 class="job-subtitle">Job Description</h3>
+              <section class="form-section">
+                <h3 class="section-title">Job Description</h3>
 
-                <div class="job-inputs">
-                  <div class="job-input-row">
-                    <div class="info-box">
-                      <label for="description" class="job-labels"
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="description" class="form-label"
                         >Job Description</label
                       >
-                      <textarea name="jobDescription" id=""></textarea>
+                      <textarea name="description" id="description"></textarea>
                     </div>
                   </div>
-                  <div class="job-input-row">
-                    <div class="info-box">
-                      <label for="requirement" class="job-labels"
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="requirement" class="form-label"
                         >Requirement</label
                       >
-                      <textarea name="" id=""></textarea>
+                      <textarea name="requirement" id="requirement"></textarea>
                     </div>
                   </div>
-                  <div class="job-input-row">
-                    <div class="info-box">
-                      <label for="Benefits" class="job-labels">Benefits</label>
-                      <textarea name="" id=""></textarea>
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label for="Benefits" class="form-label">Benefits</label>
+                      <textarea name="benefits" id="benefits"></textarea>
                     </div>
                   </div>
                 </div>
               </section>
-              <section class="job-information">
-                <h3 class="job-subtitle">Application Details</h3>
+              <section class="form-section">
+                <h3 class="section-title">Application Details</h3>
 
-                <div class="job-inputs">
-                  <div class="job-input-row">
-                    <div class="info-box">
-                      <label class="job-labels">Application date</label>
+                <div class="form-group">
+                  <div class="form-row">
+                    <div class="form-field">
+                      <label class="form-label">Application date</label>
                       <input type="date" name="date" />
                     </div>
-                    <div class="info-box">
-                      <label class="job-labels">Number of Vacancies</label>
+                    <div class="form-field">
+                      <label class="form-label">Number of Vacancies</label>
                       <input type="number" name="vacancy" />
                     </div>
                   </div>
@@ -139,10 +139,10 @@
               </section>
 
               <div class="form-actions">
-                <button type="submit" class="action-btn save-draft">
+                <button type="submit" name="status" value="draft" class="action-btn save-draft">
                   Save as Draft
                 </button>
-                <button type="submit" class="action-btn publish-job">
+                <button type="submit" name="status" value="published" class="action-btn publish-job">
                   Publish Job
                 </button>
               </div>

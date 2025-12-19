@@ -25,7 +25,7 @@
             >
           </div>
           <div class="dash-btn">
-            <a href="#"><i class="fa-solid fa-user"></i><span>Profile</span></a>
+            <a href="userprofile.php"><i class="fa-solid fa-user"></i><span>Profile</span></a>
           </div>
           <div class="dash-btn">
             <a href="#"
