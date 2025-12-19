@@ -14,7 +14,7 @@
     />
   </head>
   <body>
-    <!-- <?php include 'sidebar.php'; ?> -->
+    <?php include 'sidebar.php'; ?>
     <main class="content">
       <div class="dashboard-main">
         <div class="dashboard-container">
