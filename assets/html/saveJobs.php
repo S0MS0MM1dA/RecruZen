@@ -38,7 +38,7 @@
                 </div>
                 <div class="saved-job-actions">
                   <a href="#" class="apply-btn action-btn">Apply Now</a>
-                  <a href="#" class="details-btn action-btn">View Details</a>
+                  <a href="jobDetails.php" class="details-btn action-btn">View Details</a>
                 </div>
               </div>
               <div class="saved-job-card">
@@ -55,7 +55,7 @@
                 </div>
                 <div class="saved-job-actions">
                   <a href="#" class="apply-btn action-btn">Apply Now</a>
-                  <a href="#" class="details-btn action-btn">View Details</a>
+                  <a href="jobDetails.php" class="details-btn action-btn">View Details</a>
                 </div>
               </div>
               <div class="saved-job-card">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="saved-job-actions">
                   <a href="#" class="apply-btn action-btn">Apply Now</a>
-                  <a href="#" class="details-btn action-btn">View Details</a>
+                  <a href="jobDetails.php" class="details-btn action-btn">View Details</a>
                 </div>
               </div>
             </div>

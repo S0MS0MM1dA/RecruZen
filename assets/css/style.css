@@ -551,3 +551,23 @@ button.job-seeker-account {
 .job-action-btn {
   margin-bottom: 20px;
 }
+.job-section {
+  margin-top: 20px;
+}
+
+h3.job-subtitle {
+  margin-bottom: 10px;
+}
+
+.job-section p {
+  color: #565656;
+}
+
+.job-section ul li {
+  margin-bottom: 10px;
+  color: #565656;
+}
+
+.job-section ul {
+  padding: 5px 5px 5px 30px;
+}

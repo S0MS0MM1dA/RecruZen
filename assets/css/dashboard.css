@@ -386,3 +386,34 @@ button.add-skills-btn {
   font-size: 11px;
 }
 /*.      User Profile    */
+.profile-img-wrapper {
+  width: 120px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: #e1e7ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: #2762ea;
+}
+
+button.profile-img-btn {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  border: none;
+  width: 34px;
+  height: 34px;
+  color: white;
+  font-size: 25px;
+  background: #2761e9;
+  border-radius: 50%;
+}

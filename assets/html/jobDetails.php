@@ -50,7 +50,7 @@
       <div class="container">
         <div class="job-details-wrapper">
           <div class="job-details">
-            <div class="job-header">
+            <div class="job-section job-header">
               <div class="company-logo">
                 <img src="../images/google_logo.svg" alt="Company logo" />
               </div>

@@ -27,6 +27,15 @@
             <form action="" class="profile-form" method="POST">
               <section class="form-section profile-photo">
                 <h3 class="section-title">Profile Photo</h3>
+                
+                <div class="profile-img-wrapper">
+                  <div class="profile-img">DP</div>
+                  <button type="button" class="profile-img-btn">
+                    <i class="fa-solid fa-camera"></i>
+                  </button>
+                </div>
+
+                <p>JPG, PNG</p>
               </section>
 
               <section class="form-section">
@@ -88,8 +97,8 @@
                 <div class="form-group">
                   <div class="form-row">
                     <div class="form-field">
-                      <label class="form-label">Application date</label>
-                      <input type="date" name="date" />
+                      <input type="file" name="filenames" id="file-upload" class="file-input"/>
+                      
                     </div>
                   </div>
                 </div>
