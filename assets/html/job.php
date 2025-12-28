@@ -51,8 +51,8 @@
 
         <section class="job-list">
           <div class="jobs-header">
-            <h1 class="title">My Profile</h1>
-            <p class="subtitle">Manage you personal information and resume</p>
+            <h1 class="title">Find Job</h1>
+            <p class="subtitle">Find you dream job here</p>
           </div>
           <div class="job-card">
             <div class="job-card-content">
