@@ -14,35 +14,7 @@
     />
   </head>
   <body>
-    <header id="header-section" class="header-container">
-      <div class="container">
-        <nav class="nav-bar">
-          <div class="nav-logo-div">
-            <a href="#" class="logo-img">Recru<span>Zen</span></a>
-          </div>
-          <div class="nav-menu-div">
-            <ul class="nav-menu">
-              <li><a href="#welcome-section">Home</a></li>
-              <li><a href="">Jobs</a></li>
-              <li><a href="assets/html/dashboard.php">About</a></li>
-              <li><a href="assets/html/postjob.php">Contact</a></li>
-            </ul>
-          </div>
-          <div class="nav-btn-div">
-            <ul>
-              <li>
-                <a class="login-btn btn" href="assets/html/login.php">Login</a>
-              </li>
-              <li>
-                <a class="register-btn btn" href="assets/html/registration.php"
-                  >Create Account</a
-                >
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
+    <?php include 'assets/html/header.php'; ?>
     <main>
       <section id="welcome-section" class="welcome-section">
         <div class="container welcome-container">
@@ -153,42 +125,6 @@
         </div>
       </section>
     </main>
-    <footer id="footer" class="footer">
-      <div class="container footer-container">
-        <div class="footer-content-div">
-          <div class="footer-wrapper">
-            <div class="footer-logo-div">
-              <a href="#" class="logo-img">Recru<span>Zen</span></a>
-            </div>
-            <p>Your gateway to amazing career opportunities worldwide.</p>
-          </div>
-          <div class="footer-wrapper">
-            <h2 class="footer-title">For Job Seekers</h2>
-            <ul>
-              <li><a href="#">Browse Jobs</a></li>
-              <li><a href="#">Career Advice</a></li>
-              <li><a href="#">Browse Jobs</a></li>
-            </ul>
-          </div>
-          <div class="footer-wrapper">
-            <h2 class="footer-title">For Recruters</h2>
-            <ul>
-              <li><a href="#">Post a Jobs</a></li>
-              <li><a href="#">Browse Candidates</a></li>
-              <li><a href="#">Pricing</a></li>
-            </ul>
-          </div>
-          <div class="footer-wrapper">
-            <h2 class="footer-title">Support</h2>
-            <ul>
-              <li><a href="#">Help Center</a></li>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <p class="footer-copywrite">&copy 2025 RecruZen. All rights reserved.</p>
-    </footer>
+    <?php include 'assets/html/footer.php'; ?>
   </body>
 </html>

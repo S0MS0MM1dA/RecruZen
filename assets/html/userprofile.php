@@ -30,6 +30,7 @@
                 
                 <div class="profile-img-wrapper">
                   <div class="profile-img">DP</div>
+                  <input type="file">
                   <button type="button" class="profile-img-btn">
                     <i class="fa-solid fa-camera"></i>
                   </button>
