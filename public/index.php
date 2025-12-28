@@ -14,7 +14,7 @@
     />
   </head>
   <body>
-    <?php include 'assets/html/header.php'; ?>
+    <?php include '../app/views/layout/header.php'; ?>
     <main>
       <section id="welcome-section" class="welcome-section">
         <div class="container welcome-container">
@@ -125,6 +125,6 @@
         </div>
       </section>
     </main>
-    <?php include 'assets/html/footer.php'; ?>
+    <?php include '../app/views/layout/footer.php'; ?>
   </body>
 </html>
