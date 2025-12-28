@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RecruZen</title>
-    <link rel="stylesheet" href="../../../public/assets/css/style.css" />
+    <link rel="stylesheet" href="RecruZen/public/assets/css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
@@ -22,19 +22,19 @@
           </div>
           <div class="nav-menu-div">
             <ul class="nav-menu">
-              <li><a href="#welcome-section">Home</a></li>
-              <li><a href="assets/html/job.php">Jobs</a></li>
-              <li><a href="assets/html/dashboard.php">About</a></li>
-              <li><a href="assets/html/postjob.php">Contact</a></li>
+              <li><a href="index.php">Home</a></li>
+              <li><a href="app/views/jobs/job.php">Jobs</a></li>
+              <li><a href="app/views/dashboard/jobseeker/dashboard.php">About</a></li>
+              <li><a href="app/views/dashboard/recruter/postjob.php">Contact</a></li>
             </ul>
           </div>
           <div class="nav-btn-div">
             <ul>
               <li>
-                <a class="login-btn btn" href="assets/html/login.php">Login</a>
+                <a class="login-btn btn" href="app/views/auth/login.php">Login</a>
               </li>
               <li>
-                <a class="register-btn btn" href="assets/html/registration.php"
+                <a class="register-btn btn" href="app/views/auth/registration.php"
                   >Create Account</a
                 >
               </li>

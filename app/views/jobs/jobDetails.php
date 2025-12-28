@@ -16,35 +16,7 @@
     />
   </head>
   <body>
-    <header id="header-section" class="header-container">
-      <div class="container">
-        <nav class="nav-bar">
-          <div class="nav-logo-div">
-            <a href="#" class="logo-img">Recru<span>Zen</span></a>
-          </div>
-          <div class="nav-menu-div">
-            <ul class="nav-menu">
-              <li><a href="#welcome-section">Home</a></li>
-              <li><a href="">Jobs</a></li>
-              <li><a href="assets/html/dashboard.php">About</a></li>
-              <li><a href="">Contact</a></li>
-            </ul>
-          </div>
-          <div class="nav-btn-div">
-            <ul>
-              <li>
-                <a class="login-btn btn" href="assets/html/login.php">Login</a>
-              </li>
-              <li>
-                <a class="register-btn btn" href="assets/html/registration.php"
-                  >Create Account</a
-                >
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </header>
+    <?php include '../layouts/header.php'; ?>
 
     <main>
       <div class="container">

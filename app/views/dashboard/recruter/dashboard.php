@@ -15,7 +15,7 @@
   </head>
   <body>
     
-    <?php include "sidebar.php"?>
+    <?php include "../layouts/sidebar.php"?>
     <main>
       <div class="dashboard-main">
         <div class="dashboard-container">

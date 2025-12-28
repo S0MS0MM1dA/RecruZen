@@ -14,7 +14,7 @@
     />
   </head>
   <body>
-    <?php include 'header.php'; ?>
+    <?php include '../layouts/header.php'; ?>
     <main class="jobs-page">
       <div class="container jobs-layout">
         <aside class="jobs-filters">
