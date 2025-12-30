@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jobs</title>
-    <link rel="stylesheet" href="../../../public/assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
+
     <main class="jobs-page">
       <div class="container jobs-layout">
         <aside class="jobs-filters">
@@ -241,7 +226,7 @@
               <span class="job-badge">Full-time</span>
             </div>
             <div class="job-card-footer">
-              <a href="jobDetails.php" class="action-btn view-btn"
+              <a href="index.php?page=job_details" class="action-btn view-btn"
                 >View Details</a
               >
               <a href="saveJobs.php" class="action-btn save-btn">Save Jobs</a>
@@ -250,5 +235,3 @@
         </section>
       </div>
     </main>
-  </body>
-</html>

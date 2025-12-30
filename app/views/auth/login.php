@@ -13,7 +13,7 @@
             </div>
             <div class="user-type-div">
               <button class="type-btn">Job Seeker</button>
-              <button class="type-btn">Recruter</button>
+              <button class="type-btn">Recruiter</button>
             </div>
             <div class="account-user-info">
 
