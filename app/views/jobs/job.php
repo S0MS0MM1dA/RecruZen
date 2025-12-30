@@ -14,7 +14,6 @@
     />
   </head>
   <body>
-    <?php include '../layouts/header.php'; ?>
     <main class="jobs-page">
       <div class="container jobs-layout">
         <aside class="jobs-filters">
@@ -44,7 +43,7 @@
 
             <div class="filter-action">
               <button class="btn filter-btn">Apply Filters</button>
-              <a href="job.php" class="filter-btn clear-filter">Clear Filter</a>
+              <a href="index.php?page=jobs" class="filter-btn clear-filter">Clear Filter</a>
             </div>
           </form>
         </aside>
@@ -86,10 +85,10 @@
               <span class="job-badge">Full-time</span>
             </div>
             <div class="job-card-footer">
-              <a href="jobDetails.php" class="action-btn view-btn"
+              <a href="index.php?page=job_details" class="action-btn view-btn"
                 >View Details</a
               >
-              <a href="saveJobs.php" class="action-btn save-btn">Save Jobs</a>
+              <a href="index.php?page=js_saved" class="action-btn save-btn">Save Jobs</a>
             </div>
           </div>
 
@@ -251,6 +250,5 @@
         </section>
       </div>
     </main>
-    <?php include 'footer.php'; ?>
   </body>
 </html>

@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="stylesheet" href="../../../public/assets/css/style.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
+
     <main>
       <div class="container">
         <div class="account-div">
@@ -31,7 +16,8 @@
               <button class="type-btn">Recruter</button>
             </div>
             <div class="account-user-info">
-              <form class="account-form">
+
+              <form class="account-form" method="POST" action="index.php?page=login">
                 <div class="info-box">
                   <label class="account-labels" for="email">Email</label>
                   <input
@@ -59,6 +45,7 @@
                 </div>
                 <button class="job-seeker-account">Login as Job Seeker</button>
               </form>
+
               <div class="goole-div">
                 <span class="divider">OR</span>
                 <a href="#" class="google-account">
@@ -79,5 +66,4 @@
         </div>
       </div>
     </main>
-  </body>
-</html>
+

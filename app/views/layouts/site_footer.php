@@ -35,3 +35,5 @@
       </div>
       <p class="footer-copywrite">&copy 2025 RecruZen. All rights reserved.</p>
     </footer>
+  </body>
+</html>

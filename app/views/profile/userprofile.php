@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Profile</title>
-    <link rel="stylesheet" href="../../../public/assets/css/dashboard.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <?php include '../layouts/sidebar.php'; ?>
+
+<?php include __DIR__ . '/../../layouts/sidebar.php'; ?>
     <main class="content">
       <div class="dashboard-main">
         <div class="dashboard-container">
@@ -120,5 +105,3 @@
         </div>
       </div>
     </main>
-  </body>
-</html>
