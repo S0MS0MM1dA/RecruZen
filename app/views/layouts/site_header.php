@@ -1,5 +1,7 @@
-<?php
-$currentPage = $_GET['page'] ?? 'home';
+
+<?php 
+session_start(); 
+$page = $_GET['page'] ?? 'home';
 ?>
 
 <!DOCTYPE html>
@@ -12,9 +14,9 @@ $currentPage = $_GET['page'] ?? 'home';
     <?php
       $page = $_GET['page'] ?? 'home';
       $isDashboard = in_array($page, [
-      'js_dashboard','js_saved','js_applied','js_manage',
-      'rec_dashboard','rec_postjob',
-      'admin_dashboard','profile'
+      'js_dashboard','js_saved_jobs','js_applied_jobs','js_profile',
+      'rec_dashboard','rec_post_job','rec_manage_jobs',
+      'admin_dashboard'
       ]);
     ?>
 
@@ -49,14 +51,29 @@ $currentPage = $_GET['page'] ?? 'home';
           </div>
           <div class="nav-btn-div">
             <ul>
-              <li>
-                <a class="login-btn btn" href="index.php?page=login">Login</a>
-              </li>
-              <li>
-                <a class="register-btn btn" href="index.php?page=register"
-                  >Create Account</a
-                >
-              </li>
+              <?php if (!isset($_SESSION['user'])): ?>
+                <li><a class="login-btn btn" href="index.php?page=login">Login</a></li>
+                <li><a class="register-btn btn" href="index.php?page=register">Create Account</a></li>
+              <?php else: ?>
+                <?php
+                  $role = $_SESSION['user']['role'] ?? '';
+                  $dashPage = 'home';
+
+                  if ($role === 'jobseeker') $dashPage = 'js_dashboard';
+                  if ($role === 'recruiter') $dashPage = 'rec_dashboard';
+                  if ($role === 'admin')     $dashPage = 'admin_dashboard';
+                ?>
+                <li><a class="login-btn btn" href="index.php?page=<?= $dashPage ?>">Dashboard</a></li>
+                <li>
+                  <a href="index.php?page=profile" class="profile-link">
+                    <img
+                      src="public/assets/images/default_profile.avif"
+                      alt="Profile"
+                      style="width:36px;height:36px;border-radius:50%;object-fit:cover;"
+                    />
+                  </a>
+                </li>
+              <?php endif; ?>
             </ul>
           </div>
         </nav>

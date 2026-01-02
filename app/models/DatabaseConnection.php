@@ -16,17 +16,17 @@ class DatabaseConnection{
         return $connection;
     }
 
-    function signUp($connection, $name, $email, $password, $role){
+    function signUp($connection, $first_name, $last_name, $email, $password, $role){
         $sql = "
-            INSERT INTO users (name, email, password, role, status)
-            VALUES ('$name', '$email', '$password', '$role', 'active')
+            INSERT INTO users (first_name, last_name, email, password, role, status)
+            VALUES ('$first_name','$last_name', '$email', '$password', '$role', 'active')
         ";
         $result = $connection->query($sql);
         return $result;
     }
-    function signin($connection, $tableName, $email, $password){
+    function signin($connection, $email, $password){
         $sql = "
-            SELECT id, name, email, role, status
+            SELECT id, first_name, last_name, email, role, status
             FROM users
             WHERE email='$email'
             AND password='$password'

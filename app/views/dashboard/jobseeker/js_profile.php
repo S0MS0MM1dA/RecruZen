@@ -1,5 +1,5 @@
 
-<?php include __DIR__ . '/../../layouts/sidebar.php'; ?>
+<?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
     <main class="content">
       <div class="dashboard-main">
         <div class="dashboard-container">

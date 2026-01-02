@@ -23,23 +23,18 @@ unset($_SESSION['emailError'],$_SESSION['passwordError'],$_SESSION['loginError']
         <div class="account-div">
           <div class="account-header">
             <h2 class="logo-account">RecruZen</h2>
-            <p>Welcome back! Please login to continue</p>
+            <p>Admin Portal</p>
           </div>
           <div class="account-content">
             <div class="account-head">
-              <h3 class="account-title">Login</h3>
-              <p class="sub-title">Choose your account type to continue</p>
+              <h3 class="account-title">Admin Login</h3>
+              <p class="sub-title">Login to admin portal</p>
             </div>
             
             <div class="account-user-info">
-
-              <form class="account-form" method="POST" action="app/controllers/LoginHandler.php">
-                <input type="hidden" name="role" id="roleInput" value="jobseeker">
-                <?php echo $loginError ?>
-                <div class="user-type-div">
-                  <button type="button" class="type-btn active" onclick="setRole(event,'jobseeker')">Job Seeker</button>
-                  <button type="button" class="type-btn" onclick="setRole(event,'recruiter')">Recruiter</button>
-                </div>     
+              <form class="account-form" method="POST" action="app/controllers/AdminHandler.php">
+                
+                <?php echo $loginError ?>    
                 <div class="info-box">
                   <label class="account-labels" for="email">Email</label>
                   <input
@@ -67,30 +62,10 @@ unset($_SESSION['emailError'],$_SESSION['passwordError'],$_SESSION['loginError']
                     <input type="checkbox" />
                     <span>Show Password</span>
                   </label>
-                  <a href="#" class="forget-pass-btn">Forget Password?</a>
+                  <a href="#" class="forget-pass-btn">Back to user login</a>
                 </div>
                 <button type="submit" class="job-seeker-account">Login</button>
               </form>
-
-              <div class="goole-div">
-                <span class="divider">OR</span>
-                <a href="#" class="google-account">
-                  <img
-                    src="public/assets/images/google_logo.svg"
-                    alt="Google Logo"
-                    class="google-svg"
-                  />
-                  Continue With Google
-                </a>
-              </div>
-              <p>
-                Don't have an account?
-                <a class="register-here" href="index.php?page=register">Register here</a>
-              </p>
-              <p style="margin-top:8px; font-size:14px;">
-                Admin? 
-                <a class="register-here" href="index.php?page=admin_login">Login Here</a>
-              </p>
             </div>
           </div>
         </div>

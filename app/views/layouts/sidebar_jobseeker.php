@@ -9,7 +9,7 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=profile"
+        <a href="index.php?page=js_profile"
           ><i class="fa-solid fa-user"></i><span>Profile</span></a
         >
       </div>
@@ -35,7 +35,7 @@
       </div>
     </nav>
     <div class="logout-div dash-btn">
-      <a href="index.php?page=home"
+      <a href="app/controllers/Logout.php"
         ><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></a
       >
     </div>

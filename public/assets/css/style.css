@@ -2,6 +2,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .container {
   width: 90%;
@@ -141,14 +143,22 @@ section#welcome-section {
   justify-content: space-around;
   margin: 15px auto;
   border-radius: 19px;
-  width: 60%;
   align-items: center;
   gap: 40px;
+  max-width: 900px;
 }
 .headeline-search-div input {
   padding: 5px 0px;
   border: none;
   border-bottom: 1px solid #e5e5e7;
+  outline: none;
+  width: 100%;
+}
+.input-warpper {
+  display: flex;
+  justify-content: left;
+  gap: 4px;
+  align-items: center;
 }
 a.search-btn.btn {
   text-decoration: none;
@@ -395,19 +405,24 @@ p.sub-title {
 }
 
 .user-type-div {
-  border: 1px solid black;
-  border-radius: 7px;
-  padding: 4px 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  padding: 5px 0px;
   justify-content: space-around;
   display: flex;
   width: auto;
-  background-color: #f9fafb;
+  background-color: #ffffff;
 }
 button.type-btn {
-  padding: 9px 40px;
+  padding: 12px 70px;
   border: none;
   color: black;
   background-color: #f9fafb;
+}
+button.type-btn.active {
+  background-color: #2563eb;
+  color: white;
+  border-radius: 6px;
 }
 
 .account-user-info {
@@ -456,7 +471,7 @@ button.job-seeker-account {
   background-color: #4949ffbd;
   border: none;
   border-radius: 8px;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
 }
 
 .goole-div {
@@ -497,6 +512,13 @@ button.job-seeker-account {
   text-decoration: none;
   margin-left: 3px;
   color: #4a4af9;
+}
+
+span.errors {
+  color: red;
+  padding: 3px 5px 0;
+  display: block;
+  font-size: 13px;
 }
 
 /*.   Jov Details.    */
