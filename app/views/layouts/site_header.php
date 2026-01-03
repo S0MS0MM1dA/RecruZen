@@ -63,13 +63,12 @@ $page = $_GET['page'] ?? 'home';
                   if ($role === 'recruiter') $dashPage = 'rec_dashboard';
                   if ($role === 'admin')     $dashPage = 'admin_dashboard';
                 ?>
-                <li><a class="login-btn btn" href="index.php?page=<?= $dashPage ?>">Dashboard</a></li>
+                <li><a class="dashboard-btn btn" href="index.php?page=<?= $dashPage ?>">Dashboard</a></li>
                 <li>
                   <a href="index.php?page=profile" class="profile-link">
                     <img
                       src="public/assets/images/default_profile.avif"
                       alt="Profile"
-                      style="width:36px;height:36px;border-radius:50%;object-fit:cover;"
                     />
                   </a>
                 </li>

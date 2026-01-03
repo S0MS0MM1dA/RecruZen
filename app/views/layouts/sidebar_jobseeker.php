@@ -19,7 +19,7 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=js_saved"
+        <a href="index.php?page=js_saved_jobs"
           ><i class="fa-solid fa-bookmark"></i><span>Saved Jobs</span></a
         >
       </div>

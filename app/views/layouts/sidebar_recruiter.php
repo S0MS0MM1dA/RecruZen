@@ -14,12 +14,12 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=jobs"
+        <a href="index.php?page=rec_post_job"
           ><i class="fa-solid fa-briefcase"></i><span>Post Jobs</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=js_saved"
+        <a href="index.php?page=rec_manage_jobs"
           ><i class="fa-solid fa-bookmark"></i><span>Manage Jobs</span></a
         >
       </div>

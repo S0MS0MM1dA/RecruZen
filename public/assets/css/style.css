@@ -93,6 +93,7 @@ ul.nav-menu li a {
 .nav-btn-div ul {
   list-style: none;
   display: flex;
+  align-items: center;
 }
 
 .nav-btn-div .btn {
@@ -102,6 +103,17 @@ ul.nav-menu li a {
   border-radius: 8px;
   margin: 0px 5px;
   color: #498aff;
+}
+
+a.profile-link {
+  width: 36px;
+  height: 36px;
+  display: block;
+  object-fit: cover;
+}
+
+a.profile-link img {
+  width: 100%;
 }
 
 /* Welcome Section */
