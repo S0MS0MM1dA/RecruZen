@@ -10,7 +10,7 @@
       </div>
       <div class="dash-btn">
         <a href="index.php?page=js_profile"
-          ><i class="fa-solid fa-user"></i><span>Profile</span></a
+          ><i class="fa-solid fa-user"></i><span>Update Profile</span></a
         >
       </div>
       <div class="dash-btn">

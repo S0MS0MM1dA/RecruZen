@@ -306,8 +306,8 @@ section.form-section {
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  width: 100%;
 }
-
 h3.section-title {
   font-size: 18px;
   font-weight: 600;
@@ -370,6 +370,7 @@ button.action-btn.save-draft {
 .form-field.skills-wrapper {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 
 .form-field.skills-wrapper input {
@@ -416,4 +417,13 @@ button.profile-img-btn {
   font-size: 25px;
   background: #2761e9;
   border-radius: 50%;
+}
+.section-part {
+  display: flex;
+  justify-content: start;
+  gap: 30px;
+}
+
+section.form-section.profile-photo {
+  width: 70%;
 }

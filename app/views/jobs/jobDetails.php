@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="job-type">
-            <span>full time</span>
+            <span>Full Time</span>
           </div>
         </div>
 

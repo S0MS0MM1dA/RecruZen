@@ -65,10 +65,10 @@
               <div class="job-title">
                 <h3>Senior React Developer</h3>
                 <span class="job-type full-time">Full Time</span>
+                <p class="company-name">TechCorp Inc.</p>
               </div>
 
               <div class="job-company-info">
-                <p class="company-name">TechCorp Inc.</p>
                 <p class="company-location">
                   <i class="fa-solid fa-location-dot"></i>San Francisco, CA
                 </p>
