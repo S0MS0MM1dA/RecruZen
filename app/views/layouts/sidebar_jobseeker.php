@@ -24,13 +24,13 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=js_applied">
+        <a href="index.php?page=js_applied_jobs">
           <i class="fa-solid fa-bars-progress"></i><span>Applied Jobs</span></a
         >
       </div>
       <div class="dash-btn">
         <a href="#"
-          ><i class="fa-solid fa-bars-progress"></i><span>Settings</span></a
+          ><i class="fa-solid fa-gear"></i><span>Settings</span></a
         >
       </div>
     </nav>

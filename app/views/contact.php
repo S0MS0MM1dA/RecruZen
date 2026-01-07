@@ -1,15 +1,15 @@
 <main>
   <div class="container">
-    <h3 class="title title-contact">Contact Me</h3>
+    <h3 class="title title-contact">Contact Us</h3>
     <section class="contact-wrapper">
       <div class="contact-info">
         <h2>Get In Touch</h2>
         <p>I'd like to hear from you</p>
         <div class="contact-meta">
-          <span class="meta-links"><i class="fa-brands fa-linkedin"></i></span>
-          <span class="meta-links"><i class="fa-brands fa-x-twitter"></i></span>
-          <span class="meta-links"><i class="fa-brands fa-facebook"></i></span>
-          <span class="meta-links"><i class="fa-brands fa-instagram"></i></span>
+          <span class="meta-links"><a class="linkedin" href="https://www.linkedin.com/"><i class="fa-brands fa-linkedin"></i></a></span>
+          <span class="meta-links"><a class="twitter" href="https://x.com/"><i class="fa-brands fa-x-twitter"></i></a></span>
+          <span class="meta-links"><a class="facebook" href="https://www.facebook.com/"><i class="fa-brands fa-facebook"></i></a></span>
+          <span class="meta-links"><a class="instagram" href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></span>
         </div>
         <div class="contact-rocket">
           <img src="public/assets/images/contact-rocket.png" alt="">

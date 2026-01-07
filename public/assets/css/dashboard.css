@@ -427,3 +427,7 @@ button.profile-img-btn {
 section.form-section.profile-photo {
   width: 70%;
 }
+.section-part p {
+  text-align: center;
+  font-size: 14px;
+}
