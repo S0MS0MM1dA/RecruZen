@@ -242,7 +242,7 @@ p.category-jobs {
   color: #797979;
 }
 
-/*-------- Job -----------*/
+/*-------- Featured Job -----------*/
 .featured-jobs-section {
   background-color: #f8faff;
   padding: 60px 0px;
@@ -796,4 +796,97 @@ input[type="number"] {
   display: flex;
   justify-content: space-around;
   gap: 10px;
+}
+/*.  Contact Page.  */
+section.contact-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 0;
+  margin: 40px auto;
+}
+
+.contact-info h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  color: #000000;
+}
+
+.contact-info p {
+  font-size: 15px;
+  padding: 0px 10px 0px 0px;
+  margin-bottom: 11px;
+  color: #000000;
+  text-align: center;
+}
+
+.contact-form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.contact-input {
+  width: 100%;
+  margin-bottom: 10px;
+  display: block;
+}
+.contact-info {
+  width: 100%;
+}
+
+.contact-input label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.contact-input input {
+  display: block;
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 9px 14px;
+}
+
+.contact-input textarea {
+  display: block;
+  width: 100%;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 9px 14px;
+  resize: vertical;
+  height: 100px;
+  max-height: 150px;
+}
+button.contact-send-btn.btn {
+  text-decoration: none;
+  padding: 10px 15px;
+  border: 0.5px solid #aaaaaa;
+  border-radius: 8px;
+  color: #ffffff;
+  background: #498aff;
+}
+img {
+  width: 100%;
+}
+
+.contact-rocket {
+  width: 100%;
+}
+.contact-meta {
+  margin-top: 50px;
+}
+
+span.meta-links {
+  font-size: 35px;
+  margin: 27px;
+  color: #3d5ac8;
+}
+h3.title.title-contact {
+  margin: 40px auto;
+  color: #498aff;
+  border-bottom: 2px solid;
+  width: fit-content;
 }
