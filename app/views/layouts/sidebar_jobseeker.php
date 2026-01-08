@@ -29,7 +29,7 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="#"
+        <a href="index.php?page=js_settings"
           ><i class="fa-solid fa-gear"></i><span>Settings</span></a
         >
       </div>
