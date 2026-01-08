@@ -4,15 +4,15 @@
     <div class="dashboard-container">
       <div class="dashboard-header">
         <h3>Welcome Back, SomSom!</h3>
-        <p>This a temporary line</p>
+        <p>Manage Your Job Posting and Find Your Best Job</p>
       </div>
 
       <section class="dashboard-status-div">
         <div class="stat-card">
           <div class="stat-card-info">
-            <p class="label">Total Application</p>
-            <h3 class="value">24</h3>
-            <span class="growth positive">+12% from last month</span>
+            <p class="label">Total Job Post here </p>
+            <h3 class="value">12</h3>
+            
           </div>
           <div class="stat-card-icon">
             <i class="fa-solid fa-file-lines"></i>
@@ -21,8 +21,8 @@
 
         <div class="stat-card">
           <div class="stat-card-info">
-            <p class="label">Saved Jobs</p>
-            <h3 class="value">24</h3>
+            <p class="label">Active Jobs</p>
+            <h3 class="value">8</h3>
             <span class="growth positive">+12% from last month</span>
           </div>
           <div class="stat-card-icon">
@@ -32,8 +32,8 @@
 
         <div class="stat-card">
           <div class="stat-card-info">
-            <p class="label">Interview Invites</p>
-            <h3 class="value">24</h3>
+            <p class="label">Total Applications</p>
+            <h3 class="value">342</h3>
             <span class="growth positive">+12% from last month</span>
           </div>
           <div class="stat-card-icon">
@@ -43,8 +43,8 @@
 
         <div class="stat-card">
           <div class="stat-card-info">
-            <p class="label">Profile Views</p>
-            <h3 class="value">24</h3>
+            <p class="label">New Applicants</p>
+            <h3 class="value">7</h3>
             <span class="growth positive">+12% from last month</span>
           </div>
           <div class="stat-card-icon">
@@ -55,8 +55,8 @@
 
       <section class="dashboard-tracker-div">
         <div class="tracker-header">
-          <h4>Recent Applications</h4>
-          <p>Track yous job applications</p>
+          <h4>Recent Job Post</h4>
+          <p>Overview Of Your Last Job</p>
         </div>
         <div class="tracker-table-div">
           <table class="tracker-table">
