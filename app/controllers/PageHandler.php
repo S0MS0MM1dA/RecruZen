@@ -8,7 +8,7 @@ class PageHandler
 
         $dashboardPages = [
             // Jobseeker
-            'js_dashboard','js_saved_jobs','js_applied_jobs','js_profile',
+            'js_dashboard','js_saved_jobs','js_applied_jobs','js_profile','js_settings',
 
             // Recruiter
             'rec_dashboard','rec_post_job','rec_manage_jobs','rec_applicants','rec_applicant_details','rec_company_profile',
@@ -47,6 +47,7 @@ class PageHandler
             case 'js_saved_jobs':   include $base . 'dashboard/jobseeker/js_save_jobs.php'; break;
             case 'js_applied_jobs': include $base . 'dashboard/jobseeker/js_applied_jobs.php'; break;
             case 'js_profile':      include $base . 'dashboard/jobseeker/js_profile.php'; break;
+            case 'js_settings':      include $base . 'dashboard/jobseeker/js_settings.php'; break;
 
             // Recruiter dashboard
             case 'rec_dashboard':         include $base . 'dashboard/recruiter/rec_dashboard.php'; break;
