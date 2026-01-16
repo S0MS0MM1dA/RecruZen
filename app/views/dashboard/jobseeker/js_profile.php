@@ -16,7 +16,7 @@
               <div class="profile-img-wrapper">
                 <div class="profile-img">DP</div>
                 <input type="file" id="profile-img-upload" hidden/>
-                <button type="button" class="profile-img-btn" onclick="document.getElementByID('profile-img-upload').click()">
+                <button type="button" class="profile-img-btn" onclick="document.getElementById('profile-img-upload').click()">
                   <i class="fa-solid fa-camera"></i>
                 </button>
               </div>
