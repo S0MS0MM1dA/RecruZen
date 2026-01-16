@@ -1,3 +1,32 @@
+<?php
+require_once __DIR__ . '/../../app/models/DatabaseConnection.php';
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$job_id = (int)($_GET['id'] ?? 0);
+if ($job_id <= 0) {
+    die("Invalid job");
+}
+
+$sql = "SELECT j.*,
+  c.name AS category_name,
+  l.name AS location_name,
+  u.company_name
+  FROM jobs j
+  JOIN categories c ON j.category_id = c.id
+  JOIN locations l ON j.location_id = l.id
+  JOIN users u ON j.user_id = u.id
+  WHERE j.id = $job_id AND j.status = 'published'
+";
+
+$result = $conn->query($sql);
+if (!$result || $result->num_rows === 0) {
+    die("Job not found");
+}
+
+$job = $result->fetch_assoc();
+?>
 <main>
   <div class="container">
     <div class="job-details-wrapper">
@@ -11,32 +40,42 @@
           </div>
 
           <div class="job-title-box">
-            <h1>Senior React Developer</h1>
-            <p>Tech crop LTD</p>
+            <h1><?= htmlspecialchars($job['title']) ?></h1>
+            <p><?= htmlspecialchars($job['company_name']) ?></p>
 
             <div class="job-meta">
-              <span><i class="fa-solid fa-location-dot"></i> Location</span>
-              <span><i class="fa-solid fa-dollar-sign"></i> $120k - $160k</span>
-              <span><i class="fa-regular fa-clock"></i> Posted 2 days ago</span>
+              <span>
+                <i class="fa-solid fa-location-dot"></i>
+                <?= htmlspecialchars($job['location_name']) ?>
+              </span>
+              <span>
+                <i class="fa-solid fa-dollar-sign"></i> 
+                <?= htmlspecialchars($job['min_salary']) ?> - 
+                <?= htmlspecialchars($job['max_salary']) ?>
+              </span>
+              <span>
+                <i class="fa-regular fa-clock"></i> 
+                Posted on <?= date('d M Y',strtotime($job['company_name'])) ?>
+              </span>
             </div>
           </div>
           <div class="job-type">
-            <span>Full Time</span>
+            <span><?= ucfirst($job['job_type']) ?></span>
           </div>
         </div>
 
         <div class="job-section">
           <h3 class="job-subtitle">Job Description</h3>
           <p>
-            We are looking for an experienced React developer to join our
-            dynamic team. You will be responsible for developing and maintaining
-            web applications using React, TypeScript, and modern development
-            tools. This role offers the opportunity to work on cutting-edge
-            projects and collaborate with talented professionals.
+            <?= nl2br(htmlspecialchars($job['description'])) ?>
           </p>
         </div>
         <div class="job-section">
           <h3 class="job-subtitle">Key Responsibilities</h3>
+          <p>
+            <?= nl2br(htmlspecialchars($job['requirement'])) ?>
+          </p>
+        <!--
           <ul>
             <li>Develop and maintain high-quality React applications</li>
             <li>Collaborate with design and backend teams</li>
@@ -44,9 +83,14 @@
             <li>Participate in code reviews and technical discussions</li>
             <li>Optimize applications for maximum performance</li>
           </ul>
+        -->
         </div>
         <div class="job-section">
           <h3 class="job-subtitle">Requirements</h3>
+          <p>
+            <?= nl2br(htmlspecialchars($job['requirement'])) ?>
+          </p>
+        <!--
           <ul>
             <li>5+ years of experience with React and modern JavaScript</li>
             <li>Strong proficiency in TypeScript</li>
@@ -54,9 +98,14 @@
             <li>Familiarity with modern build tools and CI/CD</li>
             <li>Excellent problem-solving and communication skills</li>
           </ul>
+        -->
         </div>
         <div class="job-section">
           <h3 class="job-subtitle">Benefits</h3>
+          <p>
+            <?= nl2br(htmlspecialchars($job['benefits'])) ?>
+          </p>
+        <!--
           <ul>
             <li>Competitive salary and equity package</li>
             <li>Health, dental, and vision insurance</li>
@@ -64,6 +113,7 @@
             <li>Professional development opportunities</li>
             <li>Modern office with great perks</li>
           </ul>
+        -->
         </div>
       </div>
 
@@ -76,9 +126,9 @@
         <div class="company-info">
           <h4>About Company</h4>
           <div class="company-meta">
-            <p>Technology</p>
+            <p><?= htmlspecialchars($job['company_name']) ?></p>
             <p>Employee</p>
-            <p>Location</p>
+            <p><?= htmlspecialchars($job['location_name']) ?></p>
           </div>
           <hr />
           <p class="company-description">
