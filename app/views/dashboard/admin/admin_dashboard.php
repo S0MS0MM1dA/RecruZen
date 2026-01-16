@@ -6,7 +6,7 @@
         <div class="dashboard-container">
           <div class="dashboard-header">
             <h3>Welcome Back, Zubs!</h3>
-            <p>This a temporary line</p>
+            <p>This a admin dashboard</p>
           </div>
 
           <section class="dashboard-status-div">
