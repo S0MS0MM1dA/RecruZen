@@ -1,5 +1,18 @@
 <?php
-$recruiter = $recruiter ?? [];
+session_start();
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "recruiter"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$user_id = $_SESSION['user']['id'];
+$recruiter = $db -> getRecruiterProfile($conn, $user_id);
+
 $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
 ?>
 <?php include __DIR__ . '/../../layouts/sidebar_recruiter.php'; ?>
@@ -8,21 +21,30 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
     <div class="dashboard-container">
       <div class="dashboard-header">
         <h1 class="title">Company Profile</h1>
+        <?php echo $isEdit ? 'EDIT MODE' : 'VIEW MODE'; ?>
         <p class="subtitle">Manage you company information</p>
       </div>
 
       <div class="profile-container">
-        <form action="" class="profile-form" method="POST" enctype="multipart/form-data">
+        <form action="app/controllers/RecruiterProfileHandler.php" class="profile-form" method="POST" enctype="multipart/form-data">
           <div class="section-part">
             <section class="form-section profile-photo">
               <h3 class="section-title">Company Logo</h3>
 
               <div class="profile-img-wrapper">
-                <div class="profile-img">DP</div>
-                <input type="file" id="profile-img-upload" name="company-logo" hidden/>
+                <div class="profile-img">
+                    <?php if(!empty($recruiter['company_logo'])): ?> 
+                        <img src="/public/uploads/<?= htmlspecialchars($recruiter['company_logo']) ?>" alt="Company Logo">
+                    <?php else: ?>DP
+                    <?php endif; ?>
+                </div>
+                <?php if($isEdit): ?>
+                <input type="file" id="profile-img-upload" name="company_logo" hidden/>
+                
                 <button type="button" class="profile-img-btn" onclick="document.getElementById('profile-img-upload').click()">
                   <i class="fa-solid fa-camera"></i>
                 </button>
+                <?php endif; ?>
               </div>
 
               <p>JPG, PNG</p>
@@ -35,23 +57,35 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
                 <div class="form-row">
                   <div class="form-field">
                     <label for="name" class="form-label">Company Name</label>
-                    <input id="company_name" type="text" name="company_name" />
+                    <input id="company_name" type="text" name="company_name" 
+                        value="<?= htmlspecialchars($recruiter['company_name'] ?? '') ?>" 
+                        <?= $isEdit ? '' : 'readonly' ?>
+                        />
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-field">
                     <label for="email" class="form-label">Email</label>
-                    <input id="company_email" type="email" name="company_email" />
+                    <input id="company_email" type="email" name="company_email"
+                        value="<?= htmlspecialchars($recruiter['company_email'] ?? '') ?>" 
+                        <?= $isEdit ? '' : 'readonly' ?>    
+                    />
                   </div>
                   <div class="form-field">
                     <label for="phone" class="form-label">Phone</label>
-                    <input id="phone" type="tel" name="company_phone" />
+                    <input id="phone" type="tel" name="company_phone" 
+                        value="<?= htmlspecialchars($recruiter['company_phone'] ?? '') ?>" 
+                        <?= $isEdit ? '' : 'readonly' ?>
+                    />
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-field">
                     <label for="location" class="form-label">Location</label>
-                    <input id="location" type="text" name="company_location" />
+                    <input id="location" type="text" name="company_location" 
+                        value="<?= htmlspecialchars($recruiter['company_location'] ?? '') ?>" 
+                        <?= $isEdit ? '' : 'readonly' ?>
+                    />
                   </div>
                 </div>
                 <div class="form-row">
@@ -59,7 +93,9 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
                     <label for="summary" class="form-label"
                       >Company Description</label
                     >
-                    <textarea id="summacompany_descriptionry" name="company_description"></textarea>
+                    <textarea id="company_description" name="company_description" 
+                    <?= $isEdit ? '' : 'readonly' ?>
+                    ><?= htmlspecialchars($recruiter['company_description'] ?? '') ?></textarea>
                   </div>
                 </div>
               </div>
@@ -70,7 +106,9 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
               <h3 class="section-title">Website Link</h3>
               <div class="form-row">
                 <div class="form-field website-wrapper">
-                  <input class="website" type="text" name="company_website" />
+                  <input class="website" type="text" name="company_website" 
+                    value="<?= htmlspecialchars($recruiter['company_website'] ?? '') ?>" 
+                    <?= $isEdit ? '' : 'readonly' ?>/>
                 </div>
               </div>
             </section>
@@ -80,7 +118,10 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
               <div class="form-group">
                 <div class="form-row">
                   <div class="form-field">
-                   <textarea id="company_about" name="company_about"></textarea>
+                   <textarea id="company_about" name="company_about"
+                    <?= $isEdit ? '' : 'readonly' ?>
+                ><?= htmlspecialchars($recruiter['company_about'] ?? '') ?>
+                </textarea>
                   </div>
                 </div>
               </div>
@@ -88,14 +129,23 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
           </div>
 
           <div class="form-actions">
+            <?php if($isEdit): ?>
             <button
               type="submit"
               name="status"
               value="published"
               class="action-btn save-change"
             >
-              Save Change
+              Save Profile
             </button>
+            <?php else: ?>
+            <button
+              type="button"
+              class="action-btn save-change"
+              onclick ="window.location.href='index.php?page=rec_company_profile&edit=1'">
+                Update Profile
+            </button>
+            <?php endif; ?>
           </div>
         </form>
       </div>
