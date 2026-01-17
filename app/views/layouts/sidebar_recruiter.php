@@ -24,7 +24,7 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=js_applied">
+        <a href="index.php?page=rec_applicants">
           <i class="fa-solid fa-bars-progress"></i><span>Applicants by Job</span></a
         >
       </div>
