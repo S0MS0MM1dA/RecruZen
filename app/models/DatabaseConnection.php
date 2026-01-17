@@ -47,8 +47,32 @@ class DatabaseConnection{
             '$deadline', '$skills', '$job_type', '$workplace', '$salary_min', 
             '$salary_max', '$status', NOW() ) ";
             
-            return $connection->query($sql); 
+            $result = $connection->query($sql);
+            return $result;
         }
+
+    function getJob($connection, $job_id)
+    {
+        $sql = "SELECT j.*,
+            c.name AS category_name,
+            l.name AS location_name,
+            r.company_name
+            FROM jobs j
+            JOIN categories c ON j.category_id = c.id
+            JOIN locations l ON j.location_id = l.id
+            JOIN recruiter_profiles r ON j.user_id = r.user_id
+            WHERE j.id = $job_id AND j.status = 'published'
+            LIMIT 1";
+
+        $result = $connection->query($sql);
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_assoc();
+        }
+
+        return null;
+    }   
+
+
 
     function jobseekerProfile(
         $connection, $user_id, $phone, $address, $skills, $education, $experience, $resume, $profile_image)

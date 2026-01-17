@@ -1,31 +1,22 @@
 <?php
-require_once __DIR__ . '/../../app/models/DatabaseConnection.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+require_once __DIR__ . '/../../models/DatabaseConnection.php';
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-$job_id = (int)($_GET['id'] ?? 0);
-if ($job_id <= 0) {
-    die("Invalid job");
-}
+// $job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
+$job = $db->getJob($conn, $job_id);
 
-$sql = "SELECT j.*,
-  c.name AS category_name,
-  l.name AS location_name,
-  u.company_name
-  FROM jobs j
-  JOIN categories c ON j.category_id = c.id
-  JOIN locations l ON j.location_id = l.id
-  JOIN users u ON j.user_id = u.id
-  WHERE j.id = $job_id AND j.status = 'published'
-";
-
-$result = $conn->query($sql);
-if (!$result || $result->num_rows === 0) {
+if (!$job) {
+    echo "JOB ID: ";
+    var_dump($job_id);
     die("Job not found");
 }
 
-$job = $result->fetch_assoc();
 ?>
 <main>
   <div class="container">
@@ -55,7 +46,7 @@ $job = $result->fetch_assoc();
               </span>
               <span>
                 <i class="fa-regular fa-clock"></i> 
-                Posted on <?= date('d M Y',strtotime($job['company_name'])) ?>
+                Posted on <?= date('d M Y',strtotime($job['created_at'])) ?>
               </span>
             </div>
           </div>
@@ -73,7 +64,7 @@ $job = $result->fetch_assoc();
         <div class="job-section">
           <h3 class="job-subtitle">Key Responsibilities</h3>
           <p>
-            <?= nl2br(htmlspecialchars($job['requirement'])) ?>
+            <?= nl2br(htmlspecialchars($job['requirements'])) ?>
           </p>
         <!--
           <ul>
@@ -88,7 +79,7 @@ $job = $result->fetch_assoc();
         <div class="job-section">
           <h3 class="job-subtitle">Requirements</h3>
           <p>
-            <?= nl2br(htmlspecialchars($job['requirement'])) ?>
+            <?= nl2br(htmlspecialchars($job['requirements'])) ?>
           </p>
         <!--
           <ul>

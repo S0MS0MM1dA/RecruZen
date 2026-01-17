@@ -18,6 +18,7 @@ $jobseeker = $db -> getJobseekerProfile($conn, $user_id);
 
 $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
 ?>
+
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
 <main class="content">
   <div class="dashboard-main">

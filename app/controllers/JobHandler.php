@@ -40,7 +40,7 @@ $workplace = trim($_POST["workplace"] ?? "");
 
 $min_salary = trim($_POST["min_salary"] ?? null);
 $max_salary = trim($_POST["max_salary"] ?? null);
-$status = trim($_POST["status"] ?? "draft");
+$status = trim($_POST["status"]);
 
 if (empty($title) || empty($description) ||$category_id <= 0 || $location_id <= 0) {
     die("Required fields missing");
