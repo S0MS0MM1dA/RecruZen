@@ -46,10 +46,10 @@ $jobs = $db -> getJobApplications($conn, $user_id);
                 <tbody>
                   <?php foreach($jobs as $job): ?>
                   <tr>
-                    <td><?=htmlspecialchars($jobs['title'])?></td>
-                    <td><?=htmlspecialchars($jobs['company_name'])?></td>
-                    <td><?= date('d M Y', strtotime($job['applied_at'])) ?></td>
-                    <td><?= ucfirst($jobs['status']) ?></td>
+                    <td><?=htmlspecialchars($job['title'])?></td>
+                    <td><?=htmlspecialchars($job['company_name'])?></td>
+                    <td><?= date('d M Y',strtotime($job['applied_at']))?></td>
+                    <td><?= ucfirst($job['status']) ?></td>
                     <td><a href="#">View Details</a></td>
                   </tr>
                   <?php endforeach; ?>
