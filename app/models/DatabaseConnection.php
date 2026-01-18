@@ -97,7 +97,6 @@ class DatabaseConnection{
     }
 
 
-
     function jobseekerProfile(
         $connection, $user_id, $phone, $address, $skills, $education, $experience, $resume, $profile_image)
         {
@@ -170,6 +169,23 @@ class DatabaseConnection{
             return $result;
         }
 
+    function getJobApplications($connection, $user_id){
+       $sql = "SELECT a.*, j.title, r.company_name, a.applied_at, a.status 
+                FROM job_applications a
+                JOIN jobs j ON a.job_id = j.id
+                JOIN recruiter_profiles r ON j.user_id = r.user_id
+                WHERE a.user_id = $user_id
+                ORDER BY a.applied_at DESC";
+
+       $result = $connection->query($sql);
+
+       if($result && $result->num_rows >0){
+           return $result -> fetch_assoc();
+       }
+       else{
+           return null;
+       }
+   }
 
     function closeConnection($connection){
         $connection->close();

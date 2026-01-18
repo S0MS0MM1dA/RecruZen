@@ -1,4 +1,23 @@
 
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "jobseeker"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$user_id = $_SESSION['user']['id'];
+$jobs = $db -> getJobApplications($conn, $user_id);
+
+?>
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
     <main>
       <div class="dashboard-main">
@@ -25,13 +44,15 @@
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($jobs as $job): ?>
                   <tr>
-                    <td>Senior Software Engineer</td>
-                    <td>Deep Tech LTD</td>
-                    <td>12 Aug, 2023</td>
-                    <td>Under Review</td>
+                    <td><?=htmlspecialchars($jobs['title'])?></td>
+                    <td><?=htmlspecialchars($jobs['company_name'])?></td>
+                    <td><?= date('d M Y', strtotime($job['applied_at'])) ?></td>
+                    <td><?= ucfirst($jobs['status']) ?></td>
                     <td><a href="#">View Details</a></td>
                   </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

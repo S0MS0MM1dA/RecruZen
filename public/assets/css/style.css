@@ -96,7 +96,13 @@ ul.nav-menu li a {
   font-weight: 500;
   color: #000000;
 }
-
+ul.nav-menu li a:hover {
+  color: #1375ff;
+}
+ul.nav-menu li a.active {
+  color: #1375ff;
+  font-weight: 600;
+}
 .nav-btn-div {
   width: auto;
   justify-content: flex-end;

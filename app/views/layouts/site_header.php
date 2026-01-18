@@ -43,7 +43,7 @@ $page = $_GET['page'] ?? 'home';
           </div>
           <div class="nav-menu-div">
             <ul class="nav-menu">
-              <li><a href="index.php?page=home">Home</a></li>
+              <li><a href="index.php?page=home" class="active">Home</a></li>
               <li><a href="index.php?page=jobs">Jobs</a></li>
               <li><a href="index.php?page=about">About</a></li>
               <li><a href="index.php?page=contact">Contact</a></li>
