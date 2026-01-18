@@ -153,13 +153,22 @@ class DatabaseConnection{
         $result = $connection->query($sql);
 
         if($result && $result->num_rows >0){
-            return $result -> fetch_assoc();
+            return $result -> fetch_assoc(); 
         }
         else{
-            return [];
+            return []; 
         }
     }
 
+    function jobApplication(
+        $connection, $user_id, $job_id)
+        {
+            $sql = "INSERT INTO job_applications (user_id, job_id, status, applied_at) 
+            VALUES ( '$user_id', '$job_id','applied', NOW()) ";
+            
+            $result = $connection->query($sql);
+            return $result;
+        }
 
 
     function closeConnection($connection){

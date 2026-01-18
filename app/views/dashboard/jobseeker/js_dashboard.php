@@ -1,11 +1,32 @@
 
-    
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "jobseeker"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$user_id = $_SESSION['user']['id'];
+$jobseeker = $db -> getJobseekerProfile($conn, $user_id);
+
+?>
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
     <main>
       <div class="dashboard-main">
         <div class="dashboard-container">
           <div class="dashboard-header">
-            <h3>Welcome Back, SomSom!</h3>
+            <h3>Welcome Back, 
+              <?= htmlspecialchars($jobseeker['first_name'] ?? '') ?> 
+              <?= htmlspecialchars($jobseeker['last_name'] ?? '') ?>!
+            </h3>
             <p>This a temporary line</p>
           </div>
 

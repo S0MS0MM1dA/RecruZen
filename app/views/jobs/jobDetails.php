@@ -107,11 +107,14 @@ if (!$job) {
         -->
         </div>
       </div>
-
+      <!---  -->
       <div class="job-action">
         <div class="job-action-btn">
-          <a href="#" class="apply-btn action-btn">Apply Now</a>
-          <a href="#" class="save-btn action-btn">Save Job</a>
+          <form method="post" action="app/controllers/JobApplicationHandler.php">
+            <input type="hidden" name="job_id" value="<?= htmlspecialchars($job['id']) ?>" />
+            <button type="submit" class="apply-btn action-btn">Apply Now</button>
+            <button type="submit" class="save-btn action-btn">Save Job</button>
+          </form>
         </div>
 
         <div class="company-info">
