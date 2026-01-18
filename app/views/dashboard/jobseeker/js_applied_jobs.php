@@ -18,19 +18,19 @@
                 <thead>
                   <tr>
                     <th>Job Title</th>
-                    <th>Posting Date</th>
+                    <th>Company</th>
+                    <th>Applied On</th>
                     <th>Status</th>
-                    <th>Applicant</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>Senior Software Engineer</td>
-                    <td>Jan 15, 2024</td>
-                    <td><span class="status">Active</span></td>
-                    <td>32</td>
-                    <td>...</td>
+                    <td>Deep Tech LTD</td>
+                    <td>12 Aug, 2023</td>
+                    <td>Under Review</td>
+                    <td><a href="#">View Details</a></td>
                   </tr>
                 </tbody>
               </table>
