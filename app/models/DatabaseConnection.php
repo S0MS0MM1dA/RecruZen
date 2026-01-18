@@ -70,7 +70,31 @@ class DatabaseConnection{
         }
 
         return null;
-    }   
+    }
+
+    function getAllJobs($connection)
+    {
+        $sql = "SELECT j.*,
+            c.name AS category_name,
+            l.name AS location_name,
+            r.company_name
+            FROM jobs j
+            JOIN categories c ON j.category_id = c.id
+            JOIN locations l ON j.location_id = l.id
+            JOIN recruiter_profiles r ON j.user_id = r.user_id
+            WHERE j.status = 'published'
+            ORDER BY j.created_at DESC";
+
+        $result = $connection->query($sql);
+        $jobs = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $jobs[] = $row;
+            }
+        }
+
+        return $jobs;
+    }
 
 
 

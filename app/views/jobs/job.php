@@ -1,4 +1,23 @@
+<?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 
+require_once __DIR__ . '/../../models/DatabaseConnection.php';
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+// $job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+//$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
+$jobs = $db->getAllJobs($conn);
+
+if (!$jobs) {
+    echo "JOB ID: ";
+    var_dump($jobs_id);
+    die("Job not found");
+}
+
+?>
     <main class="jobs-page">
       <div class="container jobs-layout">
         <aside class="jobs-filters">
@@ -7,16 +26,16 @@
 
             <div class="filter-group">
               <h5>Job Type</h5>
-              <label><input type="radio" />Full-time</label>
-              <label><input type="radio" />Part-time</label>
-              <label><input type="radio" />Remote</label>
-              <label><input type="radio" />Contract</label>
+              <label><input type="radio" name="job_type" value="full-time" />Full-time</label>
+              <label><input type="radio" name="job_type" value="part-time" />Part-time</label>
+              <label><input type="radio" name="job_type" value="remote" />Remote</label>
+              <label><input type="radio" name="job_type" value="contract" />Contract</label>
             </div>
 
             <div class="filter-group">
               <h5>Salary Range</h5>
-              <input type="number" placeholder="Minimum" />
-              <input type="number" placeholder="Maximum" />
+              <input type="number" name="min_salary" placeholder="Minimum" />
+              <input type="number" name="max_salary" placeholder="Maximum" />
             </div>
             <div class="filter-group">
               <h5>Experience Level</h5>
@@ -38,6 +57,12 @@
             <h1 class="title">Find Job</h1>
             <p class="subtitle">Find you dream job here</p>
           </div>
+
+          <?php if(empty($jobs)): ?>
+            <p>No Jobs found</p>
+          <?php endif; ?>
+          
+          <?php foreach($jobs as $job): ?>
           <div class="job-card">
             <div class="job-card-content">
               <div class="job-card-left">
@@ -47,190 +72,38 @@
               </div>
 
               <div class="job-info">
-                <h3 class="job-title">Senior React Developer</h3>
-                <p class="company-name">TechCorp Inc.</p>
+                <h3 class="job-title"><?= htmlspecialchars($job['title']) ?></h3>
+                <p class="company-name"><?= htmlspecialchars($job['company_name']) ?></p>
 
                 <div class="job-meta">
                   <span>
-                    <i class="fa-solid fa-location-dot"></i>San Francisco, CA
+                    <i class="fa-solid fa-location-dot"></i><?= htmlspecialchars($job['location_name']) ?>
                   </span>
                   <span>
-                    <i class="fa-solid fa-dollar-sign"></i>$120k - $150k
+                    <i class="fa-solid fa-dollar-sign"></i>
+                    <?= htmlspecialchars($job['min_salary']) ?> - <?= htmlspecialchars($job['max_salary']) ?>
                   </span>
-                  <span> <i class="fa-regular fa-clock"></i> 2 days ago </span>
+                  <span> 
+                    <i class="fa-regular fa-clock"></i>
+                    <?= date('d M Y', strtotime($job['created_at']))?>
+                  </span>
                 </div>
 
                 <p class="job-description">
-                  We are looking for an experienced React developer to join our
-                  dynamic team. You will be responsible for developing and
-                  maintaining web applications using React, TypeScript, and
-                  modern tools.
+                  <?= nl2br(htmlspecialchars($job['description'])) ?>
                 </p>
               </div>
-              <span class="job-badge">Full-time</span>
+              <span class="job-badge"><?= ucfirst($job['job_type']) ?></span>
             </div>
             <div class="job-card-footer">
-              <a href="index.php?page=job_details" class="action-btn view-btn"
+              <a href="index.php?page=job_details&id=<?= $job['id']?>" class="action-btn view-btn"
                 >View Details</a
               >
-              <a href="index.php?page=js_saved" class="action-btn save-btn">Save Jobs</a>
+              <a href="index.php?page=js_saved&id=<?= $job['id']?>" class="action-btn save-btn">Save Jobs</a>
             </div>
           </div>
+          <?php endforeach; ?>
 
-          <div class="job-card">
-            <div class="job-card-content">
-              <div class="job-card-left">
-                <div class="job-icon">
-                  <i class="fa-solid fa-briefcase"></i>
-                </div>
-              </div>
-
-              <div class="job-info">
-                <h3 class="job-title">Senior React Developer</h3>
-                <p class="company-name">TechCorp Inc.</p>
-
-                <div class="job-meta">
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>San Francisco, CA
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-dollar-sign"></i>$120k - $150k
-                  </span>
-                  <span> <i class="fa-regular fa-clock"></i> 2 days ago </span>
-                </div>
-
-                <p class="job-description">
-                  We are looking for an experienced React developer to join our
-                  dynamic team. You will be responsible for developing and
-                  maintaining web applications using React, TypeScript, and
-                  modern tools.
-                </p>
-              </div>
-              <span class="job-badge">Full-time</span>
-            </div>
-            <div class="job-card-footer">
-              <a href="jobDetails.php" class="action-btn view-btn"
-                >View Details</a
-              >
-              <a href="saveJobs.php" class="action-btn save-btn">Save Jobs</a>
-            </div>
-          </div>
-
-          <div class="job-card">
-            <div class="job-card-content">
-              <div class="job-card-left">
-                <div class="job-icon">
-                  <i class="fa-solid fa-briefcase"></i>
-                </div>
-              </div>
-
-              <div class="job-info">
-                <h3 class="job-title">Senior React Developer</h3>
-                <p class="company-name">TechCorp Inc.</p>
-
-                <div class="job-meta">
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>San Francisco, CA
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-dollar-sign"></i>$120k - $150k
-                  </span>
-                  <span> <i class="fa-regular fa-clock"></i> 2 days ago </span>
-                </div>
-
-                <p class="job-description">
-                  We are looking for an experienced React developer to join our
-                  dynamic team. You will be responsible for developing and
-                  maintaining web applications using React, TypeScript, and
-                  modern tools.
-                </p>
-              </div>
-              <span class="job-badge">Full-time</span>
-            </div>
-            <div class="job-card-footer">
-              <a href="jobDetails.php" class="action-btn view-btn"
-                >View Details</a
-              >
-              <a href="saveJobs.php" class="action-btn save-btn">Save Jobs</a>
-            </div>
-          </div>
-
-          <div class="job-card">
-            <div class="job-card-content">
-              <div class="job-card-left">
-                <div class="job-icon">
-                  <i class="fa-solid fa-briefcase"></i>
-                </div>
-              </div>
-
-              <div class="job-info">
-                <h3 class="job-title">Senior React Developer</h3>
-                <p class="company-name">TechCorp Inc.</p>
-
-                <div class="job-meta">
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>San Francisco, CA
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-dollar-sign"></i>$120k - $150k
-                  </span>
-                  <span> <i class="fa-regular fa-clock"></i> 2 days ago </span>
-                </div>
-
-                <p class="job-description">
-                  We are looking for an experienced React developer to join our
-                  dynamic team. You will be responsible for developing and
-                  maintaining web applications using React, TypeScript, and
-                  modern tools.
-                </p>
-              </div>
-              <span class="job-badge">Full-time</span>
-            </div>
-            <div class="job-card-footer">
-              <a href="jobDetails.php" class="action-btn view-btn"
-                >View Details</a
-              >
-              <a href="saveJobs.php" class="action-btn save-btn">Save Jobs</a>
-            </div>
-          </div>
-
-          <div class="job-card">
-            <div class="job-card-content">
-              <div class="job-card-left">
-                <div class="job-icon">
-                  <i class="fa-solid fa-briefcase"></i>
-                </div>
-              </div>
-
-              <div class="job-info">
-                <h3 class="job-title">Senior React Developer</h3>
-                <p class="company-name">TechCorp Inc.</p>
-
-                <div class="job-meta">
-                  <span>
-                    <i class="fa-solid fa-location-dot"></i>San Francisco, CA
-                  </span>
-                  <span>
-                    <i class="fa-solid fa-dollar-sign"></i>$120k - $150k
-                  </span>
-                  <span> <i class="fa-regular fa-clock"></i> 2 days ago </span>
-                </div>
-
-                <p class="job-description">
-                  We are looking for an experienced React developer to join our
-                  dynamic team. You will be responsible for developing and
-                  maintaining web applications using React, TypeScript, and
-                  modern tools.
-                </p>
-              </div>
-              <span class="job-badge">Full-time</span>
-            </div>
-            <div class="job-card-footer">
-              <a href="index.php?page=job_details" class="action-btn view-btn"
-                >View Details</a
-              >
-              <a href="saveJobs.php" class="action-btn save-btn">Save Jobs</a>
-            </div>
           </div>
         </section>
       </div>

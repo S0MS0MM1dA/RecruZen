@@ -4,7 +4,7 @@
     <hr style="margin-bottom: 4px" />
     <nav class="sidebar-menu-div">
       <div class="dash-btn">
-        <a href="index.php?page=js_dashboard"
+        <a href="index.php?page=rec_dashboard"
           ><i class="fa-solid fa-house"></i><span>Dashboard</span></a
         >
       </div>

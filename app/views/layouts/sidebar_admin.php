@@ -4,32 +4,27 @@
     <hr style="margin-bottom: 4px" />
     <nav class="sidebar-menu-div">
       <div class="dash-btn">
-        <a href="index.php?page=js_dashboard"
+        <a href="index.php?page=admin_dashboard"
           ><i class="fa-solid fa-house"></i><span>Dashboard</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=profile"
+        <a href="index.php?page=admin_manage_user"
           ><i class="fa-solid fa-user"></i><span>Manage Users</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=jobs"
-          ><i class="fa-solid fa-briefcase"></i><span>Recruiter Approval</span></a
-        >
-      </div>
-      <div class="dash-btn">
-        <a href="index.php?page=js_saved"
+        <a href="index.php?page=admin_manage_jobs"
           ><i class="fa-solid fa-bookmark"></i><span>Job Approval</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=js_applied">
+        <a href="index.php?page=admin_manage_category">
           <i class="fa-solid fa-bars-progress"></i><span>Manage Categories</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="#"
+        <a href="index.php?page=admin_settings"
           ><i class="fa-solid fa-gear"></i><span>Settings</span></a
         >
       </div>

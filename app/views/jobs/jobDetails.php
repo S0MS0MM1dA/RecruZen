@@ -7,8 +7,8 @@ require_once __DIR__ . '/../../models/DatabaseConnection.php';
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-// $job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
+$job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+//$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
 $job = $db->getJob($conn, $job_id);
 
 if (!$job) {
