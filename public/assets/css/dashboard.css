@@ -452,3 +452,13 @@ button.change-pass-btn.btn {
   color: white;
   display: block;
 }
+/*  ------- Applicants --- */
+.card-info.applicant-info {
+  display: block;
+  font-size: 14px;
+}
+
+.card-info.applicant-info .check {
+  margin-bottom: 5px;
+  color: black;
+}
