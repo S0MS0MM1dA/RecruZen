@@ -134,7 +134,16 @@ class DatabaseConnection{
             $sql = "INSERT INTO recruiter_profiles (user_id, company_name, company_email, company_phone, 
                     company_description, company_logo, company_website, company_location, company_about)
                     VALUES ('$user_id', '$company_name', '$company_email', '$company_phone', 
-                    '$company_description', '$company_logo', '$company_website', '$company_location', '$company_about')";
+                    '$company_description', '$company_logo', '$company_website', '$company_location', '$company_about')
+                    ON DUPLICATE KEY UPDATE
+                    company_name = VALUES(company_name),
+                    company_email = VALUES(company_email),
+                    company_phone = VALUES(company_phone),
+                    company_description = VALUES(company_description),
+                    company_logo = VALUES(company_logo),
+                    company_website = VALUES(company_website),
+                    company_location = VALUES(company_location),
+                    company_about = VALUES(company_about)";
             
             return $connection->query($sql);
         }

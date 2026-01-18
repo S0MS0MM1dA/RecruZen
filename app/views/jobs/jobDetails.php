@@ -123,12 +123,9 @@ if (!$job) {
           </div>
           <hr />
           <p class="company-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores
-            reprehenderit sapiente commodi quam distinctio aperiam ipsa maxime,
-            quod consectetur ipsum? Numquam aspernatur eius recusandae, sint
-            commodi quod labore fugiat iusto.
+            <?= nl2br(htmlspecialchars($job['description'])) ?>
           </p>
-          <a href="#" class="company-website">visit Company</a>
+          <a href="<?= htmlspecialchars($job['company_website'] ?? '') ?>" class="company-website">visit Company</a>
         </div>
       </div>
     </div>
