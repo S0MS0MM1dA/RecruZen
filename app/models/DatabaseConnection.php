@@ -56,15 +56,19 @@ class DatabaseConnection{
         $sql = "SELECT j.*,
             c.name AS category_name,
             l.name AS location_name,
-            r.company_name
+            r.company_name, r.company_logo
             FROM jobs j
             JOIN categories c ON j.category_id = c.id
             JOIN locations l ON j.location_id = l.id
             JOIN recruiter_profiles r ON j.user_id = r.user_id
-            WHERE j.id = $job_id AND j.status = 'published'
+            WHERE j.id = ? AND j.status = 'published'
             LIMIT 1";
 
-        $result = $connection->query($sql);
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $job_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
         if ($result && $result->num_rows > 0) {
             return $result->fetch_assoc();
         }
@@ -77,7 +81,7 @@ class DatabaseConnection{
         $sql = "SELECT j.*,
             c.name AS category_name,
             l.name AS location_name,
-            r.company_name
+            r.company_name, r.company_logo
             FROM jobs j
             JOIN categories c ON j.category_id = c.id
             JOIN locations l ON j.location_id = l.id
