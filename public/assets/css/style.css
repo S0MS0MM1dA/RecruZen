@@ -765,6 +765,9 @@ input[type="number"] {
   margin-bottom: 10px;
   font-size: 14px;
 }
+.job-card-footer form {
+  display: contents;
+}
 .action-btn {
   text-decoration: none;
   padding: 10px 16px;

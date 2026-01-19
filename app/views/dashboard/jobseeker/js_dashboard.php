@@ -16,6 +16,7 @@ $conn = $db->openConnection();
 
 $user_id = $_SESSION['user']['id'];
 $jobseeker = $db -> getJobseekerProfile($conn, $user_id);
+$jobs = $db -> getJobApplications($conn, $user_id);
 
 ?>
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
@@ -34,7 +35,7 @@ $jobseeker = $db -> getJobseekerProfile($conn, $user_id);
             <div class="stat-card">
               <div class="stat-card-info">
                 <p class="label">Total Application</p>
-                <h3 class="value">24</h3>
+                <h3 class="value"><?= count($jobs); ?></h3>
                 <span class="growth positive">+12% from last month</span>
               </div>
               <div class="stat-card-icon">
@@ -93,13 +94,15 @@ $jobseeker = $db -> getJobseekerProfile($conn, $user_id);
                   </tr>
                 </thead>
                 <tbody>
+                  <?php foreach($jobs as $job): ?>
                   <tr>
-                    <td>Senior Software Engineer</td>
-                    <td>TechCorp LTD</td>
-                    <td>Jan 15, 2024</td>
-                    <td>Reviewing</td>
-                    <td><a class="view-jobs-btn" href="#">View Jobs</a></td>
+                    <td><?=htmlspecialchars($job['title'])?></td>
+                    <td><?=htmlspecialchars($job['company_name'])?></td>
+                    <td><?= date('d M Y',strtotime($job['applied_at']))?></td>
+                    <td><?= ucfirst($job['status']) ?></td>
+                    <td><a class="view-jobs-btn" href="index.php?page=job_details&id=<?= $job['job_id']?>">View Jobs</a></td>
                   </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

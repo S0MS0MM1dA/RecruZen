@@ -156,7 +156,9 @@ section.dashboard-status-div {
   align-items: center;
   border-radius: 10px;
 }
-
+h3.value {
+  padding: 8px 5px;
+}
 /*. Table Tracker.   */
 
 section.dashboard-tracker-div {
@@ -210,7 +212,7 @@ a.view-jobs-btn {
 /*  ------- saved jobs--- */
 
 .dashboard-card {
-  /* width: 400px; */
+  max-width: 400px;
   padding: 22px 20px;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
@@ -284,10 +286,15 @@ a.btn-secondary.action-btn {
 .card-info i {
   color: #2563eb;
 }
-
+.saved-job-header {
+  position: relative;
+}
 i.saved-job-bookmark {
   color: #2762ea;
   font-size: 20px;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .dashboard-card-grid {

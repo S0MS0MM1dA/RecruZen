@@ -97,9 +97,12 @@ if (!$jobs) {
             </div>
             <div class="job-card-footer">
               <a href="index.php?page=job_details&id=<?= $job['id']?>" class="action-btn view-btn"
-                >View Details</a
-              >
-              <a href="index.php?page=js_saved&id=<?= $job['id']?>" class="action-btn save-btn">Save Jobs</a>
+                >View Details</a>
+              <form method="post" action="app/controllers/JobSaveHandler.php">
+                <input type="hidden" name="job_id" value="<?= htmlspecialchars($job['id']) ?>" />
+                <button type="submit" class="action-btn save-btn">Save Job</button>
+              </form>
+            <!-- <a href="index.php?page=js_saved&id=<?= $job['id']?>" class="action-btn save-btn">Save Jobs</a> -->
             </div>
           </div>
           <?php endforeach; ?>

@@ -113,6 +113,9 @@ if (!$job) {
           <form method="post" action="app/controllers/JobApplicationHandler.php">
             <input type="hidden" name="job_id" value="<?= htmlspecialchars($job['id']) ?>" />
             <button type="submit" class="apply-btn action-btn">Apply Now</button>
+          </form>
+          <form method="post" action="app/controllers/JobSaveHandler.php">
+            <input type="hidden" name="job_id" value="<?= htmlspecialchars($job['id']) ?>" />
             <button type="submit" class="save-btn action-btn">Save Job</button>
           </form>
         </div>

@@ -187,6 +187,37 @@ class DatabaseConnection{
        }
    }
 
+   function savedJob($connection, $user_id, $job_id)
+        {
+            $sql = "INSERT INTO saved_jobs (job_id, jobseeker_id, saved_at) 
+            VALUES(?, ?, NOW())";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("ii", $job_id, $user_id);
+            
+            $result = $stmt->execute();
+            return $result;
+        }
+
+    function getSavedJob($connection, $user_id)
+    {
+        $sql = "SELECT j.*, r.company_name, r.company_logo
+            FROM jobs j
+            JOIN recruiter_profiles r ON j.user_id = r.user_id
+            JOIN saved_jobs s ON j.id = s.job_id
+            WHERE s.jobseeker_id = $user_id
+            ORDER BY s.saved_at DESC";
+
+        $result = $connection->query($sql);
+        $jobs = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $jobs[] = $row;
+            }
+        }
+
+        return $jobs;
+    }
+
     function closeConnection($connection){
         $connection->close();
     }
