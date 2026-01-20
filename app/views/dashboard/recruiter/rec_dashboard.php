@@ -1,9 +1,26 @@
+<?php
+session_start();
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "recruiter"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$user_id = $_SESSION['user']['id'];
+$recruiter = $db -> getRecruiterProfile($conn, $user_id);
+
+$isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
+?>
 <?php include __DIR__ . '/../../layouts/sidebar_recruiter.php'; ?>
 <main>
   <div class="dashboard-main">
     <div class="dashboard-container">
       <div class="dashboard-header">
-        <h3>Welcome Back, SomSom!</h3>
+        <h3>Welcome Back, <?= htmlspecialchars($recruiter['first_name'] ?? '') ?>!</h3>
         <p>Manage Your Job Posting and Find Your Best Job</p>
       </div>
 
