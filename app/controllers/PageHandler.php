@@ -11,7 +11,7 @@ class PageHandler
             'js_dashboard','js_saved_jobs','js_applied_jobs','js_profile','js_settings',
 
             // Recruiter
-            'rec_dashboard','rec_post_job','rec_manage_jobs','rec_applicants','rec_applicant_details','rec_company_profile',
+            'rec_dashboard','rec_post_job','rec_manage_jobs','rec_applicants','rec_applicant_details','rec_company_profile','rec_applicants',
 
             // Admin
             'admin_dashboard','admin_manage_user','admin_manage_jobs','admin_manage_category','admin_recruter','admin_settings',
@@ -54,8 +54,8 @@ class PageHandler
             case 'rec_post_job':          include $base . 'dashboard/recruiter/rec_post_job.php'; break;
             case 'rec_manage_jobs':       include $base . 'dashboard/recruiter/rec_manage_jobs.php'; break;
             case 'rec_applicants':        include $base . 'dashboard/recruiter/rec_applicants.php'; break;
-            case 'rec_applicant_details': include $base . 'dashboard/recruiter/rec_applicant_details.php'; break;
             case 'rec_company_profile':   include $base . 'dashboard/recruiter/rec_company_profile.php'; break;
+            case 'rec_settings':          include $base . 'dashboard/recruiter/rec_settings.php'; break;
 
             // Admin dashboard
             case 'admin_dashboard':       include $base . 'dashboard/admin/admin_dashboard.php'; break;

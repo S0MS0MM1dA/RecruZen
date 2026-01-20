@@ -9,8 +9,8 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=rec_company_profile"
-          ><i class="fa-solid fa-user"></i><span>Profile</span></a
+        <a href="index.php?page=profile"
+          ><i class="fa-solid fa-user"></i><span>Company Profile</span></a
         >
       </div>
       <div class="dash-btn">
@@ -25,17 +25,12 @@
       </div>
       <div class="dash-btn">
         <a href="index.php?page=rec_applicants">
-          <i class="fa-solid fa-bars-progress"></i><span>Applicants by Job</span></a
+          <i class="fa-solid fa-bars-progress"></i><span>Applicants</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=js_applied">
-          <i class="fa-solid fa-bars-progress"></i><span>Applicant Details</span></a
-        >
-      </div>
-      <div class="dash-btn">
-        <a href="#"
-          ><i class="fa-solid fa-gear"></i><span>Settings</span></a
+        <a href="index.php?page=rec_settings"
+          ><i class="fa-solid fa-bars-progress"></i><span>Settings</span></a
         >
       </div>
     </nav>
