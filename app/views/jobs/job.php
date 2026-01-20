@@ -18,6 +18,7 @@ if (!$jobs) {
 }
 
 ?>
+<script src="public/js/jobSearch.js"></script>
     <main class="jobs-page">
       <div class="container jobs-layout">
         <aside class="jobs-filters">
@@ -54,14 +55,44 @@ if (!$jobs) {
 
         <section class="job-list">
           <div class="jobs-header">
-            <h1 class="title">Find Job</h1>
-            <p class="subtitle">Find you dream job here</p>
+            <div class="jobs-headline">
+              <h1 class="title">Find Job</h1>
+              <p class="subtitle">Find you dream job here</p>
+            </div>
+            <div class="headeline-search-div jobs-search">
+              <div class="input-warpper">
+              <span class="input-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </span>
+              <input
+                type="text"
+                placeholder="Job Title or Keyword"
+                name=""
+                id="job_keyword"
+                onkeyup="ajaxJobSearch()"
+              />
+              </div>
+              <div class="input-warpper">
+                <span class="input-icon"
+                  ><i class="fa-solid fa-location-dot"></i
+                ></span>
+                <input 
+                  type="text" 
+                  placeholder="Location" 
+                  name="" 
+                  id="job_location"
+                  onkeyup="ajaxJobSearch()"
+                />
+              </div>
+              <a class="search-btn btn" href="#">Search</a>
+            </div>
           </div>
 
           <?php if(empty($jobs)): ?>
             <p>No Jobs found</p>
           <?php endif; ?>
           
+          <div id="job-listings">
           <?php foreach($jobs as $job): ?>
           <div class="job-card">
             <div class="job-card-content">
@@ -106,7 +137,7 @@ if (!$jobs) {
             </div>
           </div>
           <?php endforeach; ?>
-
+          </div>
           </div>
         </section>
       </div>

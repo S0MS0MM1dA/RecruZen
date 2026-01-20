@@ -255,6 +255,50 @@ class DatabaseConnection{
     }
 
 
+    function searchJobs($connection, $keyword, $location){
+        $sql = "SELECT j.*,
+            c.name AS category_name,
+            l.name AS location_name,
+            r.company_name, r.company_logo
+            FROM jobs j
+            JOIN categories c ON j.category_id = c.id
+            JOIN locations l ON j.location_id = l.id
+            JOIN recruiter_profiles r ON j.user_id = r.user_id
+            WHERE j.status = 'published'";
+
+        $params = [];
+        $types = "";
+
+        if(!empty($keyword)){
+            $sql .= " AND (j.title LIKE ? OR j.description LIKE ?)";
+            $like_keyword = "%$keyword%";
+            $params[] = $like_keyword;
+            $params[] = $like_keyword;
+            $types .= "ss";
+        }
+        if(!empty($location)){
+            $sql .= " AND l.name LIKE ?";
+            $like_location = "%$location%";
+            $params[] = $like_location;
+            $types .= "s";
+        }
+
+        $stmt = $connection->prepare($sql);      
+
+        if(!empty($params)){
+            $stmt->bind_param($types, ...$params);
+        }
+        
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
+
+
+
+
     function closeConnection($connection){
         $connection->close();
     }
