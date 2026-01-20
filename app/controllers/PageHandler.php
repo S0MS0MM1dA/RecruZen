@@ -11,7 +11,7 @@ class PageHandler
             'js_dashboard','js_saved_jobs','js_applied_jobs','js_profile','js_settings',
 
             // Recruiter
-            'rec_dashboard','rec_post_job','rec_manage_jobs','rec_applicants','rec_applicant_details','rec_company_profile','rec_applicants',
+            'rec_dashboard','rec_post_job','rec_manage_jobs','rec_applicants','rec_applicant_details','rec_company_profile','rec_applicants','rec_settings',
 
             // Admin
             'admin_dashboard','admin_manage_user','admin_manage_jobs','admin_manage_category','admin_recruter','admin_settings',

@@ -1,4 +1,4 @@
-<?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
+<?php include __DIR__ . '/../../layouts/sidebar_recruiter.php'; ?>
     <main>
       <div class="dashboard-main">
         <div class="dashboard-container">

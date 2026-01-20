@@ -212,6 +212,12 @@ a.view-jobs-btn {
   padding: 5px 8px;
   border-radius: 20px;
 }
+button.delete-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #ef4444;
+}
 /*  ------- saved jobs--- */
 
 .dashboard-card {

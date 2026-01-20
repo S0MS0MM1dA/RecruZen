@@ -167,15 +167,17 @@ class DatabaseConnection{
         }
 
     function getRecruiterProfile($connection, $user_id){
-        $sql = "SELECT * FROM recruiter_profiles WHERE user_id = user_id";
-        $result = $connection->query($sql);
+        $sql = "SELECT r.*, u.first_name,u.last_name 
+        FROM recruiter_profiles r
+        JOIN users u ON r.user_id = u.id
+        WHERE r.user_id = ? LIMIT 1;";
+        
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-        if($result && $result->num_rows >0){
-            return $result -> fetch_assoc(); 
-        }
-        else{
-            return []; 
-        }
+        return $result->fetch_assoc();
     }
 
     function jobApplication(
@@ -295,6 +297,63 @@ class DatabaseConnection{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+
+    function countRecruiterJobs($connection, $user_id) {
+        $sql = "SELECT COUNT(*) AS total FROM jobs WHERE user_id = ?";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        
+        $result = $stmt->get_result();
+        return $result->fetch_assoc()['total'];
+    }
+
+    function countActiveJobs($connection, $user_id) {
+    $sql = "SELECT COUNT(*) AS total 
+            FROM jobs 
+            WHERE user_id = ? AND status = 'published'";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_assoc()['total'];
+    }
+
+    function countTotalApplicants($connection, $user_id) {
+        $sql = "SELECT COUNT(*) AS total
+            FROM job_applications a
+            JOIN jobs j ON a.job_id = j.id
+            WHERE j.user_id = ?";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        
+        return $stmt->get_result()->fetch_assoc()['total'];
+    }
+
+    function countNewApplicants($connection, $user_id) {
+        $sql = "SELECT COUNT(*) AS total
+            FROM job_applications a
+            JOIN jobs j ON a.job_id = j.id
+            WHERE j.user_id = ?
+            AND a.applied_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc()['total'];
+    }
+
+    function deleteJob($connection, $user_id, $job_id){
+        $sql = "DELETE FROM jobs WHERE id = ? AND user_id = ?";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("ii", $job_id, $user_id);
+        return $stmt->execute();
+    }
 
 
 
