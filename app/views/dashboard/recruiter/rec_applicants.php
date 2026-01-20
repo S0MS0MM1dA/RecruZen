@@ -1,4 +1,20 @@
+<?php
+session_start();
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
 
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "recruiter"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$user_id = $_SESSION['user']['id'];
+$app = $db -> getJobApplications($conn, $user_id);
+
+$isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
+?>
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
     <main class="content">
       <div class="dashboard-main">
