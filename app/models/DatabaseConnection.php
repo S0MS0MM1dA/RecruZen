@@ -99,6 +99,21 @@ class DatabaseConnection{
 
         return $jobs;
     }
+    function getRecruiterJobs($connection, $user_id)
+    {
+        $sql = "SELECT j.id, j.title, j.created_at, j.status,
+            (SELECT COUNT(*) FROM job_applications a WHERE a.job_id = j.id) AS total_applicants
+            FROM jobs j
+            WHERE j.user_id = ?
+            ORDER BY j.created_at DESC";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 
 
     function jobseekerProfile(
@@ -221,20 +236,22 @@ class DatabaseConnection{
 
         return $jobs;
     }
-    function getRecruiterJobs($connection, $user_id)
+    function getApplicants($connection, $user_id)
     {
-        $sql = "SELECT j.id, j.title, j.created_at, j.status,
-            (SELECT COUNT(*) FROM job_applications a WHERE a.job_id = j.id) AS total_applicants
-            FROM jobs j
-            WHERE j.user_id = $user_id
-            ORDER BY j.created_at DESC";
+        $sql = "SELECT u.first_name, u.last_name, u.email, js.resume, j.title AS job_title, a.applied_at
+            FROM job_applications a
+            JOIN users u ON a.user_id = u.id
+            JOIN jobs j ON a.job_id = j.id
+            LEFT JOIN jobseeker_profiles js ON u.id = js.user_id
+            WHERE j.user_id = ?
+            ORDER BY a.applied_at DESC";
 
-        $result = $connection->query($sql);
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
 
-        if ($result && $result->num_rows > 0) {
-            return $result->fetch_all(MYSQLI_ASSOC);
-        }
-        return [];
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
 
 

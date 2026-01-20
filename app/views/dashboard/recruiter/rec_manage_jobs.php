@@ -1,13 +1,15 @@
 <?php
-require_once __DIR__ . '/../../database/DatabaseConnection.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
 
 session_start();
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-$recruiter_id = $_SESSION['user_id'];
-$jobs = $db->getRecruiterJobs($conn, $recruiter_id);
+$user_id = $_SESSION['user']['id'];
+$jobs = $db->getRecruiterJobs($conn, $user_id);
 ?>
 
 <?php include __DIR__ . '/../../layouts/sidebar_recruiter.php'; ?>
@@ -39,9 +41,15 @@ $jobs = $db->getRecruiterJobs($conn, $recruiter_id);
                  <?php foreach ($jobs as $job) {?>
                   <tr>
                     <td><?= htmlspecialchars($job['title']) ?></td>
-                    <td>Jan 15, 2024</td>
-                    <td><span class="status">Active</span></td>
-                    <td>32</td>
+                    <td><?= htmlspecialchars(date('M d, Y', strtotime($job['created_at']))) ?></td>
+                    <td>
+                      <?php if ($job['status'] === 'active') { ?>
+                        <span class="status active">Active</span>
+                      <?php } else { ?>
+                        <span class="status inactive">Inactive</span>
+                      <?php } ?>
+                    </td>
+                    <td><?= htmlspecialchars($job['total_applicants']) ?></td>
                     <td>...</td>
                   </tr>
                   <?php }?>

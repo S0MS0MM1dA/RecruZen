@@ -49,7 +49,7 @@ $jobs = $db -> getJobApplications($conn, $user_id);
                     <td><?=htmlspecialchars($job['title'])?></td>
                     <td><?=htmlspecialchars($job['company_name'])?></td>
                     <td><?= date('d M Y',strtotime($job['applied_at']))?></td>
-                    <td><?= ucfirst($job['status']) ?></td>
+                    <td><span class="status active">Applied</span></td>
                     <td><a class="view-jobs-btn" href="index.php?page=job_details&id=<?= $job['job_id']?>">View Details</a></td>
                   </tr>
                   <?php endforeach; ?>

@@ -9,7 +9,7 @@
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=profile"
+        <a href="index.php?page=rec_company_profile"
           ><i class="fa-solid fa-user"></i><span>Company Profile</span></a
         >
       </div>

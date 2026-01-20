@@ -114,6 +114,9 @@ main {
   font-weight: 600;
   margin-bottom: 5px;
 }
+h1.title {
+  margin-bottom: 10px;
+}
 .dashboard-header p {
   font-size: 15px;
   color: #6b7280;
@@ -299,7 +302,7 @@ i.saved-job-bookmark {
 
 .dashboard-card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, 340px);
   gap: 20px;
 }
 /*------Manage Jobs ------*/
