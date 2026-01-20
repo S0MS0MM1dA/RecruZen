@@ -221,6 +221,22 @@ class DatabaseConnection{
 
         return $jobs;
     }
+    function getRecruiterJobs($connection, $user_id)
+    {
+        $sql = "SELECT j.id, j.title, j.created_at, j.status,
+            (SELECT COUNT(*) FROM job_applications a WHERE a.job_id = j.id) AS total_applicants
+            FROM jobs j
+            WHERE j.user_id = $user_id
+            ORDER BY j.created_at DESC";
+
+        $result = $connection->query($sql);
+
+        if ($result && $result->num_rows > 0) {
+            return $result->fetch_all(MYSQLI_ASSOC);
+        }
+        return [];
+    }
+
 
     function closeConnection($connection){
         $connection->close();

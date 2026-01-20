@@ -1,3 +1,14 @@
+<?php
+require_once __DIR__ . '/../../database/DatabaseConnection.php';
+
+session_start();
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$recruiter_id = $_SESSION['user_id'];
+$jobs = $db->getRecruiterJobs($conn, $recruiter_id);
+?>
 
 <?php include __DIR__ . '/../../layouts/sidebar_recruiter.php'; ?>
     <main>
@@ -25,13 +36,15 @@
                   </tr>
                 </thead>
                 <tbody>
+                 <?php foreach ($jobs as $job) {?>
                   <tr>
-                    <td>Senior Software Engineer</td>
+                    <td><?= htmlspecialchars($job['title']) ?></td>
                     <td>Jan 15, 2024</td>
                     <td><span class="status">Active</span></td>
                     <td>32</td>
                     <td>...</td>
                   </tr>
+                  <?php }?>
                 </tbody>
               </table>
             </div>
