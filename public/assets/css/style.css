@@ -248,15 +248,17 @@ span.category-icon i {
   font-size: 30px;
 }
 h4.category-name {
-  font-size: 1.3rem;
+  font-size: 14px;
   text-align: center;
   padding: 2px;
   margin-bottom: 5px;
+  font-weight: 500;
 }
 
 p.category-jobs {
   text-align: center;
   color: #797979;
+  font-size: 14px;
 }
 
 /*-------- Featured Job -----------*/

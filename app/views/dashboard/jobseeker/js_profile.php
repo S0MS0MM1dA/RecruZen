@@ -37,20 +37,21 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
               <div class="profile-img-wrapper">
                 <div class="profile-img">
                   <?php if(!empty($jobseeker['profile_image'])): ?> 
-                    <img src="/public/uploads/<?= htmlspecialchars($jobseeker['profile_image']) ?>" alt="Profile Photo">
+                    <img class="uploaded-img" src="public/uploads/<?= htmlspecialchars($jobseeker['profile_image']) ?>" alt="Profile Photo">
                   <?php else: ?>DP
                   <?php endif; ?>
                 </div>
                 <?php if($isEdit): ?>
-                <input type="file" id="profile-img-upload" name="profile-image" hidden/>
+                <input type="file" id="profile-img-upload" name="profile_image" hidden/>
                
                 <button type="button" class="profile-img-btn" onclick="document.getElementById('profile-img-upload').click()">
                   <i class="fa-solid fa-camera"></i>
                 </button>
+                <p>JPG, PNG</p>
                  <?php endif; ?>
               </div>
 
-              <p>JPG, PNG</p>
+              
             </section>
 
             <section class="form-section personal-details">

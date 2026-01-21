@@ -9,35 +9,39 @@ $conn = $db->openConnection();
 
 // $job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 //$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
+
+$job_type = $_GET['job_type'] ?? null;
+$min_salary = $_GET['min_salary'] ?? null;
+$max_salary = $_GET['max_salary'] ?? null;
+
+if ($job_type || $min_salary || $max_salary) {
+    $jobs = $db->filterJobs($conn, $job_type, $min_salary, $max_salary);
+}
+
 $jobs = $db->getAllJobs($conn);
 
-if (!$jobs) {
-    echo "JOB ID: ";
-    var_dump($jobs_id);
-    die("Job not found");
-}
 
 ?>
 <script src="public/js/jobSearch.js"></script>
     <main class="jobs-page">
       <div class="container jobs-layout">
         <aside class="jobs-filters">
-          <form method="GET">
+          <form method="POST" action="app/controllers/JobFilterHandler.php">
             <h4 class="filter-title">Filter</h4>
 
             <div class="filter-group">
               <h5>Job Type</h5>
-              <label><input type="radio" name="job_type" value="full-time" />Full-time</label>
-              <label><input type="radio" name="job_type" value="part-time" />Part-time</label>
-              <label><input type="radio" name="job_type" value="remote" />Remote</label>
-              <label><input type="radio" name="job_type" value="contract" />Contract</label>
+              <label><input type="radio" name="job_type" value="full-time" <?=$job_type=='full-time'?'checked':''?>/>Full-time</label>
+              <label><input type="radio" name="job_type" value="part-time" <?=$job_type=='part-time'?'checked':''?> />Part-time</label>
+              <label><input type="radio" name="job_type" value="contract" <?=$job_type=='contract'?'checked':'' ?>/>Contract</label>
             </div>
 
             <div class="filter-group">
               <h5>Salary Range</h5>
-              <input type="number" name="min_salary" placeholder="Minimum" />
-              <input type="number" name="max_salary" placeholder="Maximum" />
+              <input type="number" name="min_salary" placeholder="Minimum" value="<?= htmlspecialchars($min_salary) ?>" />
+              <input type="number" name="max_salary" placeholder="Maximum" value="<?= htmlspecialchars($max_salary) ?>"/>
             </div>
+            <!--
             <div class="filter-group">
               <h5>Experience Level</h5>
               <label><input type="radio" />Entry Level</label>
@@ -45,6 +49,7 @@ if (!$jobs) {
               <label><input type="radio" />Senior Level</label>
               <label><input type="radio" />Lead</label>
             </div>
+            --->
 
             <div class="filter-action">
               <button class="btn filter-btn">Apply Filters</button>

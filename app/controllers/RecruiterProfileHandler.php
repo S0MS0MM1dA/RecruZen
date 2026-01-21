@@ -24,11 +24,23 @@ $company_description= trim($_POST['company_description'] ?? '');
 $company_website = trim($_POST['company_website'] ?? '');
 $company_about = trim($_POST['company_about'] ?? '');
 
-$company_logo = null;
+$company_logo = "";
 
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+
+$profile = $db->getRecruiterProfile($conn, $user_id);
+$company_logo = $profile['company_logo'] ?? '';
+
+
+$uploadFile = $_FILES['company_logo'] ?? null;
+
+if ($uploadFile && !empty($uploadFile['name'])) {
+    $targetDir = __DIR__ . "/../../public/uploads/";
+    $company_logo = time() . "_" . basename($uploadFile['name']);
+    move_uploaded_file($uploadFile['tmp_name'], $targetDir . $company_logo);
+}
 
 $result = $db->recruiterProfile(
     $conn, $user_id, $company_name, $company_email, $company_phone, $company_description, 

@@ -1,6 +1,5 @@
 <?php
-include __DIR__ . '/../../layouts/sidebar_admin.php';
-require_once '../../DatabaseConnection.php';
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
@@ -75,7 +74,7 @@ $recentApps = $db->getRecentApplicationsAdmin($conn);
                   <tr>
                     <th>Job Title</th>
                     <th>Company</th>
-                    <th>Applied Date</th>
+                    <th>Posted Date</th>
                     <th>Status</th>
                     <th>Action</th>
                   </tr>
@@ -86,10 +85,10 @@ $recentApps = $db->getRecentApplicationsAdmin($conn);
                     <tr>
                       <td><?= $app['title'] ?></td>
                       <td><?= $app['company_name'] ?></td>
-                      <td><?= date('M d, Y', strtotime($app['applied_at'])) ?></td>
+                      <td><?= date('M d, Y', strtotime($app['posted_date'])) ?></td>
                       <td><?= ucfirst($app['status']) ?></td>
                       <td>
-                        <a class="view-jobs-btn" href="#">View</a>
+                        <a class="view-jobs-btn" href="index.php?page=job_details&id=<?= $job['job_id']?>">View</a>
                       </td>
                     </tr>
                     <?php endforeach; ?>

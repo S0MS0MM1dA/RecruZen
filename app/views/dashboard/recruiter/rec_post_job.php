@@ -76,8 +76,8 @@ $locations  = $conn->query("SELECT id, name FROM locations ORDER BY name");
                       </select>
                     </div>
                     <div class="form-field">
-                      <label for="workplace" class="form-label">Workplace Type</label>
                       <select name="workplace">
+                        <option value="">Workplace Type</option>
                         <option value="On-site">On-site</option>
                         <option value="Remote">Remote</option>
                         <option value="Hybrid">Hybrid</option>

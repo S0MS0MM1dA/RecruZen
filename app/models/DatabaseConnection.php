@@ -121,10 +121,25 @@ class DatabaseConnection{
         {
             $sql = "INSERT INTO jobseeker_profiles (user_id, phone, address, skills, 
             education, experience, resume, profile_image)
-                    VALUES ('$user_id', '$phone', '$address', '$skills', '$education', 
-                    '$experience', '$resume', '$profile_image')";
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    ON DUPLICATE KEY UPDATE
+                    phone = ?,
+                    address = ?,
+                    skills = ?,
+                    education = ?,
+                    experience = ?,
+                    resume = ?,
+                    profile_image = ?";
+            $stmt = $connection->prepare($sql);
+            if (!$stmt) {
+                die("Prepare failed: " . $connection->error);
+            }
+            $stmt->bind_param("issssssssssssss", $user_id, $phone, $address, $skills, 
+                $education, $experience, $resume, $profile_image,
+                $phone, $address, $skills, 
+                $education, $experience, $resume, $profile_image);
             
-            return $connection->query($sql);
+            return $stmt->execute();
         }
 
     function getJobseekerProfile($connection, $user_id){
@@ -132,9 +147,12 @@ class DatabaseConnection{
             js.experience, js.resume, js.profile_image 
             FROM users u
             LEFT JOIN jobseeker_profiles js ON u.id = js.user_id
-            WHERE u.id = $user_id LIMIT 1;";
+            WHERE u.id = ? LIMIT 1;";
         
-        $result = $connection->query($sql);
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if($result && $result->num_rows >0){
             return $result -> fetch_assoc();
@@ -149,21 +167,33 @@ class DatabaseConnection{
         $connection, $user_id, $company_name, $company_email, $company_phone, $company_description, 
         $company_logo, $company_website, $company_location, $company_about)
         {
-            $sql = "INSERT INTO recruiter_profiles (user_id, company_name, company_email, company_phone, 
-                    company_description, company_logo, company_website, company_location, company_about)
-                    VALUES ('$user_id', '$company_name', '$company_email', '$company_phone', 
-                    '$company_description', '$company_logo', '$company_website', '$company_location', '$company_about')
-                    ON DUPLICATE KEY UPDATE
-                    company_name = VALUES(company_name),
-                    company_email = VALUES(company_email),
-                    company_phone = VALUES(company_phone),
-                    company_description = VALUES(company_description),
-                    company_logo = VALUES(company_logo),
-                    company_website = VALUES(company_website),
-                    company_location = VALUES(company_location),
-                    company_about = VALUES(company_about)";
+            $sql = "INSERT INTO recruiter_profiles (
+            user_id, company_name, company_email, company_phone, 
+            company_description, company_logo, company_website, company_location, company_about)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON DUPLICATE KEY UPDATE
+            company_name = ?,
+            company_email = ?,
+            company_phone = ?,
+            company_description = ?,
+            company_logo = ?,
+            company_website = ?,
+            company_location = ?,
+            company_about = ?";
+
             
-            return $connection->query($sql);
+            $stmt = $connection->prepare($sql);
+            if (!$stmt) {
+            // Optional: helpful for debugging
+                die("Prepare failed: " . $connection->error);
+            }
+
+            $stmt->bind_param("issssssssssssssss", $user_id, $company_name, $company_email, $company_phone,
+                $company_description, $company_logo, $company_website, $company_location, $company_about, 
+                $company_name, $company_email, $company_phone,$company_description, $company_logo, 
+                $company_website, $company_location, $company_about);
+            return $stmt->execute();
+
         }
 
     function getRecruiterProfile($connection, $user_id){
@@ -321,7 +351,7 @@ class DatabaseConnection{
         $result = $stmt->get_result();
         return $result->fetch_assoc()['total'];
     }
-    
+
     function countActiveJobs($connection, $user_id) {
     $sql = "SELECT COUNT(*) AS total 
             FROM jobs 
@@ -490,21 +520,56 @@ class DatabaseConnection{
     function getRecentApplicationsAdmin($connection){
         $sql = "SELECT j.title,
                    r.company_name,
-                   a.applied_at,
-                   a.status
-            FROM job_applications a
-            JOIN jobs j ON a.job_id = j.id
+                   j.created_at AS posted_date,
+                   j.status
+            FROM jobs j
             JOIN recruiter_profiles r ON j.user_id = r.user_id
-            ORDER BY a.applied_at DESC
+            ORDER BY j.created_at DESC
             LIMIT 5";
 
         $result = $connection->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+/* 
+    function filterJobs($connection, $job_type, $min_salary, $max_salary)
+    {
+        $sql = "SELECT j.*, r.company_name
+            FROM jobs j
+            JOIN recruiter_profiles r ON j.user_id = r.user_id
+            WHERE j.status = 'published'";
 
+        $params = [];
+        $types  = "";
 
+        if (!empty($job_type)) {
+            $sql .= " AND j.job_type = ?";
+            $params[] = $job_type;
+            $types .= "s";
+        }
 
+        if (!empty($min_salary)) {
+            $sql .= " AND j.min_salary >= ?";
+            $params[] = (int)$min_salary;
+            $types .= "i";
+        }
+
+        if (!empty($max_salary)) {
+            $sql .= " AND j.max_salary <= ?";
+            $params[] = (int)$max_salary;
+            $types .= "i";
+        }
+
+        $stmt = $connection->prepare($sql);
+
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+
+        $stmt->execute();
+        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+    }
+*/
 
     function closeConnection($connection){
         $connection->close();

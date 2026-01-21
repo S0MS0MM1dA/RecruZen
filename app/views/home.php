@@ -8,12 +8,8 @@ $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
 $jobs = $db->getAllJobs($conn);
+$categories = $db->getCategories($conn);
 
-if (!$jobs) {
-    echo "JOB ID: ";
-    var_dump($jobs_id);
-    die("Job not found");
-}
 
 ?>
 <main>
@@ -23,7 +19,10 @@ if (!$jobs) {
         <h2>Find Your Dream Job Today</h2>
         <p>Discover thousands of opportunities from top companies worldwide</p>
       </div>
+      <form action="index.php" method="POST" class="search-form">
       <div class="headeline-search-div">
+        
+          <input type="hidden" name="page" value="job_search"/>
         <div class="input-warpper">
           <span class="input-icon"
             ><i class="fa-solid fa-magnifying-glass"></i
@@ -31,7 +30,7 @@ if (!$jobs) {
           <input
             type="text"
             placeholder="Job Title or Keyword"
-            name=""
+            name="keyword"
             id="job_keyword"
           />
         </div>
@@ -39,10 +38,12 @@ if (!$jobs) {
           <span class="input-icon"
             ><i class="fa-solid fa-location-dot"></i
           ></span>
-          <input type="text" placeholder="Location" name="" id="job_location" />
+          <input type="text" placeholder="Location" name="location" id="job_location" />
         </div>
-        <a class="search-btn btn" href="#">Search</a>
+        <button type="submit" class="search-btn btn">Search</button>
+        
       </div>
+      </form>
     </div>
   </section>
 
@@ -53,11 +54,17 @@ if (!$jobs) {
         <p class="short-deescription">Find jobs in your preferred industry</p>
       </div>
       <div class="category-div">
+        <?php 
+          $limit = min(8, count($categories));
+          for ($i = 0; $i < $limit; $i++): 
+            $cat = $categories[$i];
+        ?>
         <div class="category-wrapper">
           <span class="category-icon"><i class="fa-solid fa-code"></i></span>
-          <h4 class="category-name">IT & Software</h4>
-          <p class="category-jobs">1230 Jobs Available</p>
+          <h4 class="category-name"><?= htmlspecialchars($cat['name']) ?></h4>
+          <p class="category-jobs">Jobs Available</p>
         </div>
+        <?php endfor; ?>
       </div>
     </div>
   </section>
@@ -71,7 +78,11 @@ if (!$jobs) {
 
       <div class="jobs-div">
         <?php if(count($jobs) >0): ?>
-        <?php foreach($jobs as $job): ?>
+        <?php 
+          $joblimit = min(6, count($jobs));
+          for ($i = 0; $i < $joblimit; $i++): 
+            $job = $jobs[$i];
+        ?>
         <div class="jobs-wrapper">
           <div class="job-content">
             <div class="job-logo">
@@ -114,7 +125,10 @@ if (!$jobs) {
             >
           </div>
         </div>
-        <?php endforeach; ?>
+        <?php endfor; ?>
+        <div class="view-more">
+          <a href="index.php?page=jobs" class="btn view-more-btn">View More Jobs <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
         <?php else: ?>
           <p>No Jobs found</p>
         <?php endif; ?>

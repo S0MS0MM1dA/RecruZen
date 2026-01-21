@@ -34,7 +34,7 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
               <div class="profile-img-wrapper">
                 <div class="profile-img">
                     <?php if(!empty($recruiter['company_logo'])): ?> 
-                        <img src="/public/uploads/<?= htmlspecialchars($recruiter['company_logo']) ?>" alt="Company Logo">
+                        <img class="uploaded-img" src="public/uploads/<?php echo htmlspecialchars($recruiter['company_logo']); ?>" alt="Company Logo"/>
                     <?php else: ?>DP
                     <?php endif; ?>
                 </div>
@@ -44,10 +44,10 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
                 <button type="button" class="profile-img-btn" onclick="document.getElementById('profile-img-upload').click()">
                   <i class="fa-solid fa-camera"></i>
                 </button>
+                <p>JPG, PNG</p>
                 <?php endif; ?>
               </div>
 
-              <p>JPG, PNG</p>
             </section>
 
             <section class="form-section personal-details">
@@ -152,3 +152,17 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
     </div>
   </div>
 </main>
+<script>
+const imgInput = document.getElementById('profile-img-upload');
+const imgPreview = document.querySelector('.uploaded-img');
+
+imgInput.addEventListener('change', function(){
+    if(this.files && this.files[0]){
+        const reader = new FileReader();
+        reader.onload = function(e){
+            imgPreview.src = e.target.result;
+        }
+        reader.readAsDataURL(this.files[0]);
+    }
+});
+</script>

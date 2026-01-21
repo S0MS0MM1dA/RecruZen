@@ -26,12 +26,25 @@ $education= trim($_POST['education'] ?? '');
 $experience = trim($_POST['experience'] ?? '');
 $skills = trim($_POST['skills'] ?? '');
 
-$profile_image = null;
+$profile_image = "";
 $resume = null;
 
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+
+
+$profile = $db->getRecruiterProfile($conn, $user_id);
+$profile_image = $profile['profile_image'] ?? '';
+
+
+$uploadFile = $_FILES['profile_image'] ?? null;
+
+if ($uploadFile && !empty($uploadFile['name'])) {
+    $targetDir = __DIR__ . "/../../public/uploads/";
+    $profile_image = time() . "_" . basename($uploadFile['name']);
+    move_uploaded_file($uploadFile['tmp_name'], $targetDir . $profile_image);
+}
 
 $result = $db->jobseekerProfile(
     $conn, $user_id, $phone, $address, $skills, $education, $experience, $resume, $profile_image
