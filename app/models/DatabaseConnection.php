@@ -414,6 +414,42 @@ class DatabaseConnection{
         $stmt->bind_param("si", $status, $job_id);
         return $stmt->execute();
     }
+    
+    function getCategories($connection){
+        $sql = "SELECT * FROM categories ORDER BY id DESC";
+        return $connection->query($sql)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function addCategory($connection, $name){
+        $stmt = $connection->prepare("INSERT INTO categories (name) VALUES (?)");
+        $stmt->bind_param("s", $name);
+        return $stmt->execute();
+    }
+
+    function deleteCategory($connection, $id){
+        $stmt = $connection->prepare("DELETE FROM categories WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+    function getLocations($connection){
+        $sql = "SELECT * FROM locations ORDER BY id DESC";
+        return $connection->query($sql)->fetch_all(MYSQLI_ASSOC);
+    }
+
+    function addLocation($connection, $name){
+        $stmt = $connection->prepare("INSERT INTO locations (name) VALUES (?)");
+        $stmt->bind_param("s", $name);
+        return $stmt->execute();
+    }
+
+    function deleteLocation($connection, $id){
+        $stmt = $connection->prepare("DELETE FROM locations WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        return $stmt->execute();
+    }
+
+
 
 
 
