@@ -318,6 +318,7 @@ section.dashboard-tracker-div {
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  margin-bottom: 15px;
 }
 span.status {
   background: #b8e0b8db;

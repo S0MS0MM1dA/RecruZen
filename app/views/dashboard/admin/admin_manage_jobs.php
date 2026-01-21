@@ -1,8 +1,9 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
+
 session_start();
-require_once __DIR__ '/../../../models/DatabaseConnection.php';
+require_once __DIR__ . '/../../../models/DatabaseConnection.php';
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
@@ -12,18 +13,8 @@ if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
     exit;
 }
 
-
 $pendingJobs = $db->getPendingJobs($conn);
 $allJobs = $db->getAllJobsAdmin($conn);
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $job_id = (int) $_POST['job_id'];
-    $status = $_POST['action'] === 'approve' ? 'published' : 'rejected';
-    $db->updateJobStatus($conn, $job_id, $status);
-    header("Location: job_approval.php");
-    exit;
-}
-
 ?>
 
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
@@ -64,16 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                    <td><?= $job['category_name'] ?></td>
                    <td><?= date('M d, Y', strtotime($job['created_at'])) ?></td>
                    <td>
-                    <form method="post" style="display:inline;">
+                    <form method="post" action="app/controllers/AdminJobController.php" style="display:inline;">
                       <input type="hidden" name="job_id" value="<?= $job['id'] ?>">
                       <input type="hidden" name="action" value="approve">
                       <button type="submit">Approve</button>
                     </form>|
-                    <form method="post" style="display:inline;">
+                    <form method="post" action="app/controllers/AdminJobController.php" style="display:inline;">
                       <input type="hidden" name="job_id" value="<?= $job['id'] ?>">
-                      <input type="hidden" name="action" value="approve">
-                      <button type="submit">Approve</button>
-                    </form>|
+                      <input type="hidden" name="action" value="reject">
+                      <button type="submit">Reject</button>
+                    </form>
                   </td>
                  </tr>
                  <?php endforeach; ?>

@@ -309,6 +309,19 @@ class DatabaseConnection{
         return $result->fetch_assoc()['total'];
     }
 
+    function countPendingJobs($connection, $user_id) {
+    $sql = "SELECT COUNT(*) AS total 
+            FROM jobs 
+            WHERE user_id = ? AND status = 'pending'";
+
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        return $result->fetch_assoc()['total'];
+    }
+    
     function countActiveJobs($connection, $user_id) {
     $sql = "SELECT COUNT(*) AS total 
             FROM jobs 

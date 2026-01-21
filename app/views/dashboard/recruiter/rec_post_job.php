@@ -158,7 +158,7 @@ $locations  = $conn->query("SELECT id, name FROM locations ORDER BY name");
                 <button type="submit" name="status" value="draft" class="action-btn save-draft">
                   Save as Draft
                 </button>
-                <button type="submit" name="status" value="published" class="action-btn publish-job">
+                <button type="submit" name="status" value="pending" class="action-btn publish-job">
                   Publish Job
                 </button>
               </div>
