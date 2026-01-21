@@ -296,14 +296,19 @@ a.btn-secondary.action-btn {
   color: #2563eb;
 }
 .saved-job-header {
-  position: relative;
+  /* position: relative; */
+  justify-content: space-between;
 }
 i.saved-job-bookmark {
   color: #2762ea;
   font-size: 20px;
-  position: absolute;
+  /* position: absolute; */
   right: 0;
   top: 0;
+}
+button.remove-save-btn {
+  background: none;
+  border: none;
 }
 
 .dashboard-card-grid {

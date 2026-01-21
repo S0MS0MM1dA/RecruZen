@@ -152,17 +152,3 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
     </div>
   </div>
 </main>
-<script>
-const imgInput = document.getElementById('profile-img-upload');
-const imgPreview = document.querySelector('.uploaded-img');
-
-imgInput.addEventListener('change', function(){
-    if(this.files && this.files[0]){
-        const reader = new FileReader();
-        reader.onload = function(e){
-            imgPreview.src = e.target.result;
-        }
-        reader.readAsDataURL(this.files[0]);
-    }
-});
-</script>

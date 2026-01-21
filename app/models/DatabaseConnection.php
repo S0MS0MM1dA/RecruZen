@@ -531,6 +531,21 @@ class DatabaseConnection{
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
+    function countSavedJobs($connection, $user_id) {
+    $sql = "SELECT COUNT(*) AS total 
+            FROM saved_jobs 
+            WHERE jobseeker_id = ?";
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        return $stmt->get_result()->fetch_assoc()['total'];
+    }
+    function removeSavedJob($conn, $user_id, $job_id) {
+        $stmt = $conn->prepare("DELETE FROM saved_jobs WHERE user_id = ? AND job_id = ?");
+        return $stmt->execute([$user_id, $job_id]);
+    }
+
+
 /* 
     function filterJobs($connection, $job_type, $min_salary, $max_salary)
     {

@@ -17,6 +17,8 @@ $conn = $db->openConnection();
 $user_id = $_SESSION['user']['id'];
 $jobseeker = $db -> getJobseekerProfile($conn, $user_id);
 $jobs = $db -> getJobApplications($conn, $user_id);
+$savedJobs = $db -> countSavedJobs($conn, $user_id);
+
 
 ?>
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
@@ -36,7 +38,6 @@ $jobs = $db -> getJobApplications($conn, $user_id);
               <div class="stat-card-info">
                 <p class="label">Total Application</p>
                 <h3 class="value"><?= count($jobs); ?></h3>
-                <span class="growth positive">+12% from last month</span>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-file-lines"></i>
@@ -46,35 +47,13 @@ $jobs = $db -> getJobApplications($conn, $user_id);
             <div class="stat-card">
               <div class="stat-card-info">
                 <p class="label">Saved Jobs</p>
-                <h3 class="value">24</h3>
-                <span class="growth positive">+12% from last month</span>
+                <h3 class="value"><?= $savedJobs ?></h3>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-bookmark"></i>
               </div>
             </div>
 
-            <div class="stat-card">
-              <div class="stat-card-info">
-                <p class="label">Interview Invites</p>
-                <h3 class="value">24</h3>
-                <span class="growth positive">+12% from last month</span>
-              </div>
-              <div class="stat-card-icon">
-                <i class="fa-solid fa-calendar-check"></i>
-              </div>
-            </div>
-
-            <div class="stat-card">
-              <div class="stat-card-info">
-                <p class="label">Profile Views</p>
-                <h3 class="value">24</h3>
-                <span class="growth positive">+12% from last month</span>
-              </div>
-              <div class="stat-card-icon">
-                <i class="fa-solid fa-eye"></i>
-              </div>
-            </div>
           </section>
 
           <section class="dashboard-tracker-div">

@@ -15,7 +15,7 @@ $conn = $db->openConnection();
 
 $user_id = $_SESSION['user']['id'];
 $jobs = $db -> getSavedJob($conn, $user_id);
-
+$isSaved = isset($_GET['saved']) && $_GET['saved'] == 1;
 ?>
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>
     <main class="content">
@@ -31,7 +31,12 @@ $jobs = $db -> getSavedJob($conn, $user_id);
               <div class="dashboard-card">
                 <div class="card-header saved-job-header">
                   <div class="card-avatar">S</div>
-                  <i class="fa-solid fa-bookmark saved-job-bookmark"></i>
+                  <form action="app/controllers/RemoveSavedHandler.php" method="POST">
+                    <input type="hidden" name="job_id" value="<?= $job['id'] ?>">
+                    <button type="submit" class="remove-save-btn">
+                      <i class="fa-solid fa-bookmark saved-job-bookmark"></i>
+                    </button>
+                  </form>
                 </div>
                 <h3 class="card-title"><?= htmlspecialchars($job['title']) ?></h3>
                 <p class="card-subtitle"><?= htmlspecialchars($job['company_name']) ?></p>
@@ -57,3 +62,4 @@ $jobs = $db -> getSavedJob($conn, $user_id);
         </div>
       </div>
     </main>
+    
