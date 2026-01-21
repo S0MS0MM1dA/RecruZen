@@ -1,19 +1,29 @@
 <?php
-require_once '../../DatabaseConnection.php';
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+session_start();
+require_once __DIR__ '/../../../models/DatabaseConnection.php';
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-if (isset($_GET['action'], $_GET['job_id'])) {
-    $job_id = (int) $_GET['job_id'];
-    $status = ($_GET['action'] === 'approve') ? 'published' : 'rejected';
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
+
+
+$pendingJobs = $db->getPendingJobs($conn);
+$allJobs = $db->getAllJobsAdmin($conn);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $job_id = (int) $_POST['job_id'];
+    $status = $_POST['action'] === 'approve' ? 'published' : 'rejected';
     $db->updateJobStatus($conn, $job_id, $status);
     header("Location: job_approval.php");
     exit;
 }
 
-$pendingJobs = $db->getPendingJobs($conn);
-$allJobs = $db->getAllJobsAdmin($conn);
 ?>
 
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
@@ -45,7 +55,7 @@ $allJobs = $db->getAllJobsAdmin($conn);
                </thead>
                <tbody>
                 <?php if(!empty($pendingJobs)): ?>
-                  <?php foreach($pendingJobs as $jobs): ?>
+                  <?php foreach($pendingJobs as $job): ?>
                  <tr>
                    <td><?= $job['id'] ?></td>
                    <td><?= $job['first_name'].' '.$job['last_name'] ?></td>
@@ -54,8 +64,16 @@ $allJobs = $db->getAllJobsAdmin($conn);
                    <td><?= $job['category_name'] ?></td>
                    <td><?= date('M d, Y', strtotime($job['created_at'])) ?></td>
                    <td>
-                    <a href="?action=approve&job_id=<?= $job['id'] ?>">Approve</a> |
-                    <a href="?action=reject&job_id=<?= $job['id'] ?>">Reject</a>
+                    <form method="post" style="display:inline;">
+                      <input type="hidden" name="job_id" value="<?= $job['id'] ?>">
+                      <input type="hidden" name="action" value="approve">
+                      <button type="submit">Approve</button>
+                    </form>|
+                    <form method="post" style="display:inline;">
+                      <input type="hidden" name="job_id" value="<?= $job['id'] ?>">
+                      <input type="hidden" name="action" value="approve">
+                      <button type="submit">Approve</button>
+                    </form>|
                   </td>
                  </tr>
                  <?php endforeach; ?>
