@@ -355,6 +355,33 @@ class DatabaseConnection{
         return $stmt->execute();
     }
 
+    function getAllUsers($connection){
+        $sql = "SELECT id, first_name, last_name, email, role, status, created_at
+                FROM users
+                ORDER BY created_at DESC";
+
+        $result = $connection->query($sql);
+        $users = [];
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $users[] = $row;
+            }
+        }
+
+        return $users;
+    }
+    function toggleUserStatus($connection, $user_id){
+        $sql = "UPDATE users 
+                SET status = CASE 
+                    WHEN status = 'active' THEN 'blocked' 
+                    ELSE 'active' 
+                END 
+                WHERE id = ?";
+        
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        return $stmt->execute();
+    }
 
 
 

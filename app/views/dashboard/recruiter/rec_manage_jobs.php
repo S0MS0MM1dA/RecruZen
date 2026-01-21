@@ -53,7 +53,7 @@ $jobs = $db->getRecruiterJobs($conn, $user_id);
                     <td>
                       <form method="POST" action="app/controllers/DeleteJobController.php" onsubmit="return confirm('Are you sure you want to delete this job?');">
                         <input type="hidden" name="job_id" value="<?= htmlspecialchars($job['id']) ?>">
-                        <button type="submit" class="delete-btn"><i class="fa-regular fa-trash-can"></i></button>
+                        <button type="submit" class="icon-btn delete-btn"><i class="fa-regular fa-trash-can"></i></button>
                       </form>
                     </td>
                   </tr>

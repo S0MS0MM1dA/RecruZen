@@ -12,9 +12,8 @@
           <section class="dashboard-status-div">
             <div class="stat-card">
               <div class="stat-card-info">
-                <p class="label">Total Application</p>
+                <p class="label">Total Users</p>
                 <h3 class="value">24</h3>
-                <span class="growth positive">+12% from last month</span>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-file-lines"></i>
@@ -23,9 +22,8 @@
 
             <div class="stat-card">
               <div class="stat-card-info">
-                <p class="label">Saved Jobs</p>
+                <p class="label">Jobsekers</p>
                 <h3 class="value">24</h3>
-                <span class="growth positive">+12% from last month</span>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-bookmark"></i>
@@ -34,9 +32,8 @@
 
             <div class="stat-card">
               <div class="stat-card-info">
-                <p class="label">Interview Invites</p>
+                <p class="label">Recruiter</p>
                 <h3 class="value">24</h3>
-                <span class="growth positive">+12% from last month</span>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-calendar-check"></i>
@@ -45,9 +42,8 @@
 
             <div class="stat-card">
               <div class="stat-card-info">
-                <p class="label">Profile Views</p>
+                <p class="label">Total Jobs</p>
                 <h3 class="value">24</h3>
-                <span class="growth positive">+12% from last month</span>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-eye"></i>
