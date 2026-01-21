@@ -1,5 +1,18 @@
+<?php
+include __DIR__ . '/../../layouts/sidebar_admin.php';
+require_once '../../DatabaseConnection.php';
 
-    
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+$totalUsers     = $db->countTotalUsers($conn);
+$jobseekers     = $db->countJobseekers($conn);
+$recruiters     = $db->countRecruiters($conn);
+$totalJobs      = $db->countTotalJobs($conn);
+
+$recentApps = $db->getRecentApplicationsAdmin($conn);
+?>
+
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
     <main>
       <div class="dashboard-main">
@@ -13,7 +26,7 @@
             <div class="stat-card">
               <div class="stat-card-info">
                 <p class="label">Total Users</p>
-                <h3 class="value">24</h3>
+                <h3 class="value"><?= $totalUsers ?></h3>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-file-lines"></i>
@@ -23,7 +36,7 @@
             <div class="stat-card">
               <div class="stat-card-info">
                 <p class="label">Jobsekers</p>
-                <h3 class="value">24</h3>
+                <h3 class="value"><?= $jobseekers ?></h3>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-bookmark"></i>
@@ -33,7 +46,7 @@
             <div class="stat-card">
               <div class="stat-card-info">
                 <p class="label">Recruiter</p>
-                <h3 class="value">24</h3>
+                <h3 class="value"><?= $recruiters ?></h3>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-calendar-check"></i>
@@ -43,7 +56,7 @@
             <div class="stat-card">
               <div class="stat-card-info">
                 <p class="label">Total Jobs</p>
-                <h3 class="value">24</h3>
+                <h3 class="value"><?= $totalJobs ?></h3>
               </div>
               <div class="stat-card-icon">
                 <i class="fa-solid fa-eye"></i>
@@ -68,14 +81,24 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Senior Software Engineer</td>
-                    <td>TechCorp LTD</td>
-                    <td>Jan 15, 2024</td>
-                    <td>Reviewing</td>
-                    <td><a class="view-jobs-btn" href="#">View Jobs</a></td>
-                  </tr>
-                </tbody>
+                  <?php if (!empty($recentApps)): ?>
+                    <?php foreach ($recentApps as $app): ?>
+                    <tr>
+                      <td><?= $app['title'] ?></td>
+                      <td><?= $app['company_name'] ?></td>
+                      <td><?= date('M d, Y', strtotime($app['applied_at'])) ?></td>
+                      <td><?= ucfirst($app['status']) ?></td>
+                      <td>
+                        <a class="view-jobs-btn" href="#">View</a>
+                      </td>
+                    </tr>
+                    <?php endforeach; ?>
+                  <?php else: ?>
+                    <tr>
+                      <td colspan="5">No recent applications</td>
+                    </tr>
+                  <?php endif; ?>
+                </tbody>  
               </table>
             </div>
           </section>

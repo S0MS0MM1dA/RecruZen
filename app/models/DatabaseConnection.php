@@ -463,6 +463,45 @@ class DatabaseConnection{
     }
 
 
+    function countTotalUsers($connection){
+        $sql = "SELECT COUNT(*) AS total FROM users";
+        $result = $connection->query($sql);
+        return $result->fetch_assoc()['total'];
+    }
+
+    function countJobseekers($connection){
+        $sql = "SELECT COUNT(*) AS total FROM users WHERE role = 'jobseeker'";
+        $result = $connection->query($sql);
+        return $result->fetch_assoc()['total'];
+    }
+
+    function countRecruiters($connection){
+        $sql = "SELECT COUNT(*) AS total FROM users WHERE role = 'recruiter'";
+        $result = $connection->query($sql);
+        return $result->fetch_assoc()['total'];
+    }
+
+    function countTotalJobs($connection){
+        $sql = "SELECT COUNT(*) AS total FROM jobs";
+        $result = $connection->query($sql);
+        return $result->fetch_assoc()['total'];
+    }
+
+    function getRecentApplicationsAdmin($connection){
+        $sql = "SELECT j.title,
+                   r.company_name,
+                   a.applied_at,
+                   a.status
+            FROM job_applications a
+            JOIN jobs j ON a.job_id = j.id
+            JOIN recruiter_profiles r ON j.user_id = r.user_id
+            ORDER BY a.applied_at DESC
+            LIMIT 5";
+
+        $result = $connection->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
+
 
 
 
