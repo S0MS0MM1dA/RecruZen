@@ -15,6 +15,7 @@ if (isset($_GET['action'], $_GET['job_id'])) {
 $pendingJobs = $db->getPendingJobs($conn);
 $allJobs = $db->getAllJobsAdmin($conn);
 ?>
+
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
    <main>
      <div class="dashboard-main">
@@ -86,15 +87,23 @@ $allJobs = $db->getAllJobsAdmin($conn);
                  </tr>
                </thead>
                <tbody>
+                  <?php if(!empty($allJobs)): ?>
+                  <?php foreach($allJobs as $job): ?>
                  <tr>
-                   <td>1</td>
-                   <td>Zobayer Alom</td>
-                   <td>SWE</td>
-                   <td>Description</td>
-                   <td>IT</td>
-                   <td>Jan 20, 2026</td>
-                   <td>view</td>
+                   <td><?= $job['id'] ?></td>
+                   <td><?= $job['first_name'].' '.$job['last_name'] ?></td>
+                   <td><?= $job['title'] ?></td>
+                   <td><?= substr($job['description'], 0, 50) ?>...</td>
+                   <td><?= $job['category_name'] ?></td>
+                   <td><?= date('M d, Y', strtotime($job['created_at'])) ?></td>
+                   <td><?= ucfirst($job['status']) ?></td>
                  </tr>
+                 <?php endforeach; ?>
+                 <?php else: ?>
+                <tr>
+                  <td colspan="7">No pending jobs</td>
+                </tr>
+                <?php endif; ?>
                </tbody>
              </table>
            </div>
