@@ -383,6 +383,22 @@ class DatabaseConnection{
         return $stmt->execute();
     }
 
+    function getPendingJobs($connection){
+        $sql = "SELECT j.id, j.title, j.description, j.created_at,
+                   c.name AS category_name,
+                   u.first_name, u.last_name
+            FROM jobs j
+            JOIN categories c ON j.category_id = c.id
+            JOIN users u ON j.user_id = u.id
+            WHERE j.status = 'pending'
+            ORDER BY j.created_at DESC";
+
+        return $connection->query($sql)->fetch_all(MYSQLI_ASSOC);
+    }
+
+   
+
+
 
 
     function closeConnection($connection){

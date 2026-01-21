@@ -1,3 +1,20 @@
+<?php
+require_once '../../DatabaseConnection.php';
+
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+
+if (isset($_GET['action'], $_GET['job_id'])) {
+    $job_id = (int) $_GET['job_id'];
+    $status = ($_GET['action'] === 'approve') ? 'published' : 'rejected';
+    $db->updateJobStatus($conn, $job_id, $status);
+    header("Location: job_approval.php");
+    exit;
+}
+
+$pendingJobs = $db->getPendingJobs($conn);
+$allJobs = $db->getAllJobsAdmin($conn);
+?>
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
    <main>
      <div class="dashboard-main">
@@ -26,15 +43,26 @@
                  </tr>
                </thead>
                <tbody>
+                <?php if(!empty($pendingJobs)): ?>
+                  <?php foreach($pendingJobs as $jobs): ?>
                  <tr>
-                   <td>1</td>
-                   <td>Zobayer Alom</td>
-                   <td>SWE</td>
-                   <td>Description</td>
-                   <td>IT</td>
-                   <td>Jan 20, 2026</td>
-                   <td>Aprove Reject</td>
+                   <td><?= $job['id'] ?></td>
+                   <td><?= $job['first_name'].' '.$job['last_name'] ?></td>
+                   <td><?= $job['title'] ?></td>
+                   <td><?= substr($job['description'], 0, 50) ?>...</td>
+                   <td><?= $job['category_name'] ?></td>
+                   <td><?= date('M d, Y', strtotime($job['created_at'])) ?></td>
+                   <td>
+                    <a href="?action=approve&job_id=<?= $job['id'] ?>">Approve</a> |
+                    <a href="?action=reject&job_id=<?= $job['id'] ?>">Reject</a>
+                  </td>
                  </tr>
+                 <?php endforeach; ?>
+                 <?php else: ?>
+                <tr>
+                  <td colspan="7">No pending jobs</td>
+                </tr>
+                <?php endif; ?>
                </tbody>
              </table>
            </div>
