@@ -5,7 +5,6 @@ require_once '../../DatabaseConnection.php';
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
 
-/* CATEGORY ACTIONS */
 if (isset($_POST['add_category'])) {
     $db->addCategory($conn, $_POST['category_name']);
 }
@@ -14,7 +13,6 @@ if (isset($_GET['delete_category'])) {
     $db->deleteCategory($conn, (int)$_GET['delete_category']);
 }
 
-/* LOCATION ACTIONS */
 if (isset($_POST['add_location'])) {
     $db->addLocation($conn, $_POST['location_name']);
 }
@@ -33,7 +31,6 @@ $locations  = $db->getLocations($conn);
 
 <h3>Manage Category & Location</h3>
 
-<!-- CATEGORY SECTION -->
 <section class="dashboard-tracker-div">
     <div class="tracker-header">
         <h4>Categories</h4>
@@ -73,7 +70,6 @@ $locations  = $db->getLocations($conn);
     </table>
 </section>
 
-<!-- LOCATION SECTION -->
 <section class="dashboard-tracker-div">
     <div class="tracker-header">
         <h4>Locations</h4>
