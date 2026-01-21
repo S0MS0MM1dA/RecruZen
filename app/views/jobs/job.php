@@ -14,10 +14,6 @@ $job_type = $_GET['job_type'] ?? null;
 $min_salary = $_GET['min_salary'] ?? null;
 $max_salary = $_GET['max_salary'] ?? null;
 
-if ($job_type || $min_salary || $max_salary) {
-    $jobs = $db->filterJobs($conn, $job_type, $min_salary, $max_salary);
-}
-
 $jobs = $db->getAllJobs($conn);
 
 
@@ -26,20 +22,21 @@ $jobs = $db->getAllJobs($conn);
     <main class="jobs-page">
       <div class="container jobs-layout">
         <aside class="jobs-filters">
-          <form method="POST" action="app/controllers/JobFilterHandler.php">
+          <form onsubmit="return false;">
             <h4 class="filter-title">Filter</h4>
 
             <div class="filter-group">
               <h5>Job Type</h5>
-              <label><input type="radio" name="job_type" value="full-time" <?=$job_type=='full-time'?'checked':''?>/>Full-time</label>
-              <label><input type="radio" name="job_type" value="part-time" <?=$job_type=='part-time'?'checked':''?> />Part-time</label>
-              <label><input type="radio" name="job_type" value="contract" <?=$job_type=='contract'?'checked':'' ?>/>Contract</label>
+              <label><input type="radio" name="job_type" value="" checked onchange="ajaxJobSearch()" />All</label>
+              <label><input type="radio" name="job_type" value="full-time" checked onchange="ajaxJobSearch()"/>Full-time</label>
+              <label><input type="radio" name="job_type" value="part-time" checked onchange="ajaxJobSearch()" />Part-time</label>
+              <label><input type="radio" name="job_type" value="contract" checked onchange="ajaxJobSearch()"/>Contract</label>
             </div>
 
             <div class="filter-group">
               <h5>Salary Range</h5>
-              <input type="number" name="min_salary" placeholder="Minimum" value="<?= htmlspecialchars($min_salary) ?>" />
-              <input type="number" name="max_salary" placeholder="Maximum" value="<?= htmlspecialchars($max_salary) ?>"/>
+              <input type="number" name="min_salary" placeholder="Minimum" onkeyup="ajaxJobSearch()"/>
+              <input type="number" name="max_salary" placeholder="Maximum" onkeyup="ajaxJobSearch()"/>
             </div>
             <!--
             <div class="filter-group">
@@ -49,12 +46,13 @@ $jobs = $db->getAllJobs($conn);
               <label><input type="radio" />Senior Level</label>
               <label><input type="radio" />Lead</label>
             </div>
-            --->
-
+            
+            
             <div class="filter-action">
               <button class="btn filter-btn">Apply Filters</button>
               <a href="index.php?page=jobs" class="filter-btn clear-filter">Clear Filter</a>
             </div>
+            --->
           </form>
         </aside>
 

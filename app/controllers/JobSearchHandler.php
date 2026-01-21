@@ -10,8 +10,11 @@ $conn = $db->openConnection();
 
 $keyword = $_POST['keyword'] ?? '';
 $location = $_POST['location'] ?? '';
+$job_type = $_POST['job_type'] ?? '';
+$min_salary = $_POST['min_salary'] ?? '';
+$max_salary = $_POST['max_salary'] ?? '';
 
-$jobs = $db->searchJobs($conn, $keyword, $location);
+$jobs = $db->searchJobs($conn, $keyword, $location, $job_type, $min_salary, $max_salary);
 
 if(!$jobs) {
     echo "<p>No jobs found.</p>";

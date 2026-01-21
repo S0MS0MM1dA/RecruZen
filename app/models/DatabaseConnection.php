@@ -287,7 +287,7 @@ class DatabaseConnection{
     }
 
 
-    function searchJobs($connection, $keyword, $location){
+    function searchJobs($connection, $keyword, $location, $job_type, $min_salary, $max_salary){
         $sql = "SELECT j.*,
             c.name AS category_name,
             l.name AS location_name,
@@ -313,6 +313,21 @@ class DatabaseConnection{
             $like_location = "%$location%";
             $params[] = $like_location;
             $types .= "s";
+        }
+        if(!empty($job_type)){
+            $sql .= " AND j.job_type = ?";
+            $params[] = $job_type;
+            $types .= "s";
+        }
+        if(!empty($min_salary)){
+            $sql .= " AND j.min_salary >= ?";
+            $params[] = $min_salary;
+            $types .= "i";
+        }
+        if(!empty($max_salary)){
+            $sql .= " AND j.max_salary <= ?";
+            $params[] = $max_salary;
+            $types .= "i";
         }
 
         $stmt = $connection->prepare($sql);      
@@ -545,46 +560,6 @@ class DatabaseConnection{
         return $stmt->execute([$user_id, $job_id]);
     }
 
-
-/* 
-    function filterJobs($connection, $job_type, $min_salary, $max_salary)
-    {
-        $sql = "SELECT j.*, r.company_name
-            FROM jobs j
-            JOIN recruiter_profiles r ON j.user_id = r.user_id
-            WHERE j.status = 'published'";
-
-        $params = [];
-        $types  = "";
-
-        if (!empty($job_type)) {
-            $sql .= " AND j.job_type = ?";
-            $params[] = $job_type;
-            $types .= "s";
-        }
-
-        if (!empty($min_salary)) {
-            $sql .= " AND j.min_salary >= ?";
-            $params[] = (int)$min_salary;
-            $types .= "i";
-        }
-
-        if (!empty($max_salary)) {
-            $sql .= " AND j.max_salary <= ?";
-            $params[] = (int)$max_salary;
-            $types .= "i";
-        }
-
-        $stmt = $connection->prepare($sql);
-
-        if (!empty($params)) {
-            $stmt->bind_param($types, ...$params);
-        }
-
-        $stmt->execute();
-        return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-    }
-*/
 
     function closeConnection($connection){
         $connection->close();
