@@ -58,12 +58,12 @@ $allJobs = $db->getAllJobsAdmin($conn);
                     <form method="post" action="app/controllers/AdminJobController.php" style="display:inline;">
                       <input type="hidden" name="job_id" value="<?= $job['id'] ?>">
                       <input type="hidden" name="action" value="approve">
-                      <button type="submit">Approve</button>
-                    </form>|
+                      <button type="submit action-btn">Approve</button>
+                    </form>
                     <form method="post" action="app/controllers/AdminJobController.php" style="display:inline;">
                       <input type="hidden" name="job_id" value="<?= $job['id'] ?>">
                       <input type="hidden" name="action" value="reject">
-                      <button type="submit">Reject</button>
+                      <button type="submit action-btn">Reject</button>
                     </form>
                   </td>
                  </tr>
