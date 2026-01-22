@@ -21,7 +21,7 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
     <div class="dashboard-container">
       <div class="dashboard-header">
         <h1 class="title">Company Profile</h1>
-        <?php echo $isEdit ? 'EDIT MODE' : 'VIEW MODE'; ?>
+        <!--- <?php echo $isEdit ? 'EDIT MODE' : 'VIEW MODE'; ?> --->
         <p class="subtitle">Manage you company information</p>
       </div>
 

@@ -51,7 +51,6 @@ $newApplicants  = $db->countNewApplicants($conn, $user_id);
           <div class="stat-card-info">
             <p class="label">Active Jobs</p>
             <h3 class="value"><?= $activeJobs; ?></h3>
-            <span class="growth positive">+12% from last month</span>
           </div>
           <div class="stat-card-icon">
             <i class="fa-solid fa-bookmark"></i>
@@ -61,7 +60,7 @@ $newApplicants  = $db->countNewApplicants($conn, $user_id);
           <div class="stat-card-info">
             <p class="label">Pending Jobs</p>
             <h3 class="value"><?= $pendingJobs; ?></h3>
-            <span class="growth positive">+12% from last month</span>
+            
           </div>
           <div class="stat-card-icon">
             <i class="fa-solid fa-bookmark"></i>
@@ -72,7 +71,7 @@ $newApplicants  = $db->countNewApplicants($conn, $user_id);
           <div class="stat-card-info">
             <p class="label">Total Applicants</p>
             <h3 class="value"><?= $totalApplicants; ?></h3>
-            <span class="growth positive">+12% from last month</span>
+            
           </div>
           <div class="stat-card-icon">
             <i class="fa-solid fa-calendar-check"></i>
@@ -83,7 +82,7 @@ $newApplicants  = $db->countNewApplicants($conn, $user_id);
           <div class="stat-card-info">
             <p class="label">New Applicants</p>
             <h3 class="value"><?= $newApplicants; ?></h3>
-            <span class="growth positive">+12% from last month</span>
+            
           </div>
           <div class="stat-card-icon">
             <i class="fa-solid fa-eye"></i>

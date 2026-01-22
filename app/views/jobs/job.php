@@ -10,6 +10,7 @@ $conn = $db->openConnection();
 // $job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 //$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
 
+
 $job_type = $_GET['job_type'] ?? null;
 $min_salary = $_GET['min_salary'] ?? null;
 $max_salary = $_GET['max_salary'] ?? null;

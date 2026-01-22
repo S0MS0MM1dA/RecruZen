@@ -151,7 +151,7 @@ $isEdit = isset($_GET['edit']) && $_GET['edit'] == 1;
                         <a href="/public/uploads/<?= htmlspecialchars($jobseeker['resume']) ?>" target="_blank" class="resume-link">
                           View Resume
                         </a>
-                      <?php else: echo $isEdit ? 'EDIT MODE' : 'VIEW MODE'; ?>
+                      <!-- <?php else: echo $isEdit ? 'EDIT MODE' : 'VIEW MODE'; ?> -->
                         <p>No Resume uploaded</p>
                       <?php endif; ?>
                     <?php endif; ?>
