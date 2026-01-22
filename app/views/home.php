@@ -90,7 +90,7 @@ $categories = $db->getCategories($conn);
                 <img src="public/assets/images/google_logo.svg" alt="Company logo">
               <?php else: ?>
               <img
-                src="/public/uploads/<?= htmlspecialchars($job['company_logo']) ?>"
+                src="public/uploads/<?= htmlspecialchars($job['company_logo']) ?>"
                 alt="Company Logo"
                 class="job-logo-img"
               />

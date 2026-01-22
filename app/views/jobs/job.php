@@ -101,7 +101,15 @@ $jobs = $db->getAllJobs($conn);
             <div class="job-card-content">
               <div class="job-card-left">
                 <div class="job-icon">
-                  <i class="fa-solid fa-briefcase"></i>
+                  <?php if(empty($job['company_logo'])): ?>
+                <img src="public/assets/images/google_logo.svg" alt="Company logo">
+              <?php else: ?>
+              <img
+                src="public/uploads/<?= htmlspecialchars($job['company_logo']) ?>"
+                alt="Company Logo"
+                class="job-logo-img"
+              />
+              <?php endif; ?>
                 </div>
               </div>
 

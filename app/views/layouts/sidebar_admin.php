@@ -4,27 +4,27 @@
     <hr style="margin-bottom: 4px" />
     <nav class="sidebar-menu-div">
       <div class="dash-btn">
-        <a href="index.php?page=admin_dashboard"
+        <a href="index.php?page=admin_dashboard" class="<?= ($page=='admin_dashboard') ? 'active' : '' ?>"
           ><i class="fa-solid fa-house"></i><span>Dashboard</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=admin_manage_user"
+        <a href="index.php?page=admin_manage_user" class="<?= ($page=='admin_manage_user') ? 'active' : '' ?>"
           ><i class="fa-solid fa-user"></i><span>Manage Users</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=admin_manage_jobs"
+        <a href="index.php?page=admin_manage_jobs" class="<?= ($page=='admin_manage_jobs') ? 'active' : '' ?>"
           ><i class="fa-solid fa-bookmark"></i><span>Job Approval</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=admin_manage_category">
+        <a href="index.php?page=admin_manage_category" class="<?= ($page=='admin_manage_category') ? 'active' : '' ?>">
           <i class="fa-solid fa-bars-progress"></i><span>Manage Categories</span></a
         >
       </div>
       <div class="dash-btn">
-        <a href="index.php?page=admin_settings"
+        <a href="index.php?page=admin_settings" class="<?= ($page=='admin_settings') ? 'active' : '' ?>"
           ><i class="fa-solid fa-gear"></i><span>Settings</span></a
         >
       </div>

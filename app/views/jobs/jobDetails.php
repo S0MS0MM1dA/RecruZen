@@ -24,10 +24,15 @@ if (!$job) {
       <div class="job-details">
         <div class="job-section job-header">
           <div class="company-logo">
-            <img
-              src="public/assets/images/google_logo.svg"
-              alt="Company logo"
-            />
+            <?php if(empty($job['company_logo'])): ?>
+                <img src="public/assets/images/google_logo.svg" alt="Company logo">
+              <?php else: ?>
+              <img
+                src="public/uploads/<?= htmlspecialchars($job['company_logo']) ?>"
+                alt="Company Logo"
+                class="job-logo-img"
+              />
+              <?php endif; ?>
           </div>
 
           <div class="job-title-box">

@@ -57,6 +57,7 @@ unset($_SESSION['emailError'],$_SESSION['passwordError'],$_SESSION['loginError']
                     class="input"
                     name="password"
                     type="password"
+                    id="passwordInput"
                     placeholder="......."
                   />
                   <?php echo $passwordError ?>
@@ -64,7 +65,7 @@ unset($_SESSION['emailError'],$_SESSION['passwordError'],$_SESSION['loginError']
                 
                 <div class="show-forget-btn">
                   <label class="show-pass">
-                    <input type="checkbox" />
+                    <input type="checkbox" id="showPassword"/>
                     <span>Show Password</span>
                   </label>
                   <a href="#" class="forget-pass-btn">Forget Password?</a>
@@ -107,5 +108,12 @@ function setRole(e, role){
 
   e.target.classList.add("active");
 }
+  const showPassword = document.getElementById("showPassword");
+  const passwordInput = document.getElementById("passwordInput");
+
+  showPassword.addEventListener("change", function () {
+    passwordInput.type = this.checked ? "text" : "password";
+  });
+
 </script>
 
