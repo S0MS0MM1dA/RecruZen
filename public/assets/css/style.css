@@ -189,7 +189,7 @@ section#welcome-section {
   gap: 4px;
   align-items: center;
 }
-a.search-btn.btn {
+.search-btn.btn {
   text-decoration: none;
   padding: 10px 30px;
   border: 1px solid #498aff;
@@ -197,6 +197,14 @@ a.search-btn.btn {
   color: white;
   background-color: #498aff;
   font-size: medium;
+}
+button.search-btn.btn {
+  padding: 10px 30px;
+  background: #498aff;
+  border: 1px solid #4d8bff;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #ffffff;
 }
 
 /*   Common all Section  - Title Div  */
