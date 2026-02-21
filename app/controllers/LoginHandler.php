@@ -1,5 +1,7 @@
 <?php
 session_start();
+ini_set('session.cookie_httponly', 1);
+ini_set('session.use_only_cookies', 1);
 require_once __DIR__ . "/../models/DatabaseConnection.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -27,11 +29,11 @@ if (isset($_SESSION["emailError"]) || isset($_SESSION["passwordError"])) {
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
-$result = $db->signin($conn, $email, $password);
+$user = $db->signin($conn, $email);
 
-if ($result && $result->num_rows > 0) {
+if ($user && password_verify($password, $user["password"])) {
 
-  $user = $result->fetch_assoc();
+  session_regenerate_id(true);
 
   if ($role !== "" && $role !== $user["role"]) {
     $_SESSION["loginError"] = "Wrong account type selected";
@@ -39,6 +41,7 @@ if ($result && $result->num_rows > 0) {
     header("Location: ../../index.php?page=login");
     exit;
   }
+  unset($user["password"]);
 
   $_SESSION["isLoggedIn"] = true;
   $_SESSION["user"] = $user;

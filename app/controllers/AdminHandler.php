@@ -27,17 +27,19 @@ if (isset($_SESSION["emailError"]) || isset($_SESSION["passwordError"])) {
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
-$result = $db->signin($conn, $email, $password);
+$user = $db->signin($conn, $email);
 
-if ($result && $result->num_rows > 0) {
+if ($user && password_verify($password, $user["password"])) {
 
-  $user = $result->fetch_assoc();
+  unset($user["password"]);
 
   if ($user["role"] != "admin") {
     $_SESSION["loginError"] = "Acces denied. Admin only.";
     header("Location: ../../index.php?page=admin_login");
     exit;
   }
+  session_regenerate_id(true);
+  unset($user["password"]);
 
   $_SESSION["isLoggedIn"] = true;
   $_SESSION["user"] = $user;

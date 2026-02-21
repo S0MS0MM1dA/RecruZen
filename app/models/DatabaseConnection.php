@@ -17,24 +17,24 @@ class DatabaseConnection{
     }
 
     function signUp($connection, $first_name, $last_name, $email, $password, $role){
-        $sql = "
+
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt = $connection->prepare("
             INSERT INTO users (first_name, last_name, email, password, role, status)
-            VALUES ('$first_name','$last_name', '$email', '$password', '$role', 'active')
-        ";
-        $result = $connection->query($sql);
-        return $result;
+           VALUES (?, ?, ?, ?, ?, 'active')");
+        $stmt->bind_param("sssss", $first_name, $last_name, $email, $hashed_password, $role);
+        return $stmt->execute();
     }
-    function signin($connection, $email, $password){
-        $sql = "
-            SELECT id, first_name, last_name, email, role, status
+    function signin($connection, $email){
+        $stmt = $connection->prepare("
+            SELECT id, first_name, last_name, email, password, role, status
             FROM users
-            WHERE email='$email'
-            AND password='$password'
-            AND status='active'
-            LIMIT 1
-        ";
-        $result = $connection->query($sql);
-        return $result;
+            WHERE email=? AND status='active'
+            LIMIT 1");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 
     function postJob(
@@ -43,12 +43,16 @@ class DatabaseConnection{
         {
             $sql = "INSERT INTO jobs (user_id, category_id, location_id, title, description, requirements, benefits, vacancies, deadline, 
             skills, job_type, workplace, min_salary, max_salary,status, created_at) 
-            VALUES ( '$user_id', '$category_id', '$location_id', '$title', '$description', '$requirements', '$benefits', '$vacancies', 
-            '$deadline', '$skills', '$job_type', '$workplace', '$salary_min', 
-            '$salary_max', '$status', NOW() ) ";
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("iiissssisssiiis", $user_id, $category_id, $location_id, $title, $description, $requirements, $benefits, $vacancies, $deadline,
+            $skills, $job_type, $workplace, $salary_min, $salary_max, $status);
             
-            $result = $connection->query($sql);
-            return $result;
+            if (!$stmt->execute()) {
+                error_log("Error posting job: " . $stmt->error);
+                return false;
+            }
+            return true;
         }
 
     function getJob($connection, $job_id)
@@ -214,9 +218,11 @@ class DatabaseConnection{
         $connection, $user_id, $job_id)
         {
             $sql = "INSERT INTO job_applications (user_id, job_id, status, applied_at) 
-            VALUES ( '$user_id', '$job_id','applied', NOW()) ";
+            VALUES (?, ?, 'pending', NOW())";
+            $stmt = $connection->prepare($sql);
+            $stmt->bind_param("ii", $user_id, $job_id);
             
-            $result = $connection->query($sql);
+            $result = $stmt->execute();
             return $result;
         }
 
@@ -228,7 +234,10 @@ class DatabaseConnection{
                 WHERE a.user_id = $user_id
                 ORDER BY a.applied_at DESC";
 
-       $result = $connection->query($sql);
+       $stmt = $connection->prepare($sql);
+       $stmt->bind_param("i", $user_id);
+       $stmt->execute();
+       $result = $stmt->get_result();
 
        if($result && $result->num_rows >0){
            return $result -> fetch_all(MYSQLI_ASSOC);
@@ -258,7 +267,10 @@ class DatabaseConnection{
             WHERE s.jobseeker_id = $user_id
             ORDER BY s.saved_at DESC";
 
-        $result = $connection->query($sql);
+        $stmt = $connection->prepare($sql);
+        $stmt->bind_param("i", $user_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $jobs = [];
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -556,8 +568,10 @@ class DatabaseConnection{
         return $stmt->get_result()->fetch_assoc()['total'];
     }
     function removeSavedJob($conn, $user_id, $job_id) {
-        $stmt = $conn->prepare("DELETE FROM saved_jobs WHERE user_id = ? AND job_id = ?");
-        return $stmt->execute([$user_id, $job_id]);
+        $stmt = $conn->prepare("DELETE FROM saved_jobs WHERE jobseeker_id = ? AND job_id = ?");
+        
+        $stmt->bind_param("ii", $user_id, $job_id);
+        return $stmt->execute();
     }
 
 
