@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 
 session_start();
 require_once __DIR__ . "/../models/DatabaseConnection.php";
+require_once __DIR__ . "/../models/RecruiterModel.php";
 
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
     header("Location: ../../index.php?page=rec_company_profile");
@@ -29,20 +30,25 @@ $company_logo = "";
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$recruiterModel = new RecruiterModel();
 
-$profile = $db->getRecruiterProfile($conn, $user_id);
+$profile = $recruiterModel->getRecruiterProfile($conn, $user_id);
 $company_logo = $profile['company_logo'] ?? '';
 
 
 $uploadFile = $_FILES['company_logo'] ?? null;
 
 if ($uploadFile && !empty($uploadFile['name'])) {
+    require_once __DIR__ . "/ImageUploadHelper.php";
     $targetDir = __DIR__ . "/../../public/uploads/";
-    $company_logo = time() . "_" . basename($uploadFile['name']);
-    move_uploaded_file($uploadFile['tmp_name'], $targetDir . $company_logo);
+    $savedName = saveUploadedImage($uploadFile, $targetDir);
+    if ($savedName !== null) {
+        $company_logo = $savedName;
+    }
+    // if validation fails, silently keep the old company_logo
 }
 
-$result = $db->recruiterProfile(
+$result = $recruiterModel->recruiterProfile(
     $conn, $user_id, $company_name, $company_email, $company_phone, $company_description, 
     $company_logo, $company_website, $company_location, $company_about
     

@@ -3,9 +3,11 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once __DIR__ . '/../../models/DatabaseConnection.php';
+require_once __DIR__ . '/../../models/JobModel.php';
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobModel = new JobModel();
 
 // $job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 //$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
@@ -15,7 +17,7 @@ $job_type = $_GET['job_type'] ?? null;
 $min_salary = $_GET['min_salary'] ?? null;
 $max_salary = $_GET['max_salary'] ?? null;
 
-$jobs = $db->getAllJobs($conn);
+$jobs = $jobModel->getAllJobs($conn);
 
 
 ?>

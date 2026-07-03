@@ -1,27 +1,38 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
 require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+require_once __DIR__ . "/../../../models/JobModel.php";
+
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobModel = new JobModel();
 
 if (isset($_POST['add_category'])) {
-  $db->addCategory($conn, $_POST['category_name']); 
+  $jobModel->addCategory($conn, $_POST['category_name']); 
 } 
 
 if(isset($_GET['delete_category'])) {
-  $db->deleteCategory($conn,(int)$_GET['delete_category']); 
+  $jobModel->deleteCategory($conn,(int)$_GET['delete_category']); 
 }
 
 if (isset($_POST['add_location'])) {
-$db->addLocation($conn, $_POST['location_name']); 
+$jobModel->addLocation($conn, $_POST['location_name']); 
 } 
 
 if(isset($_GET['delete_location'])) { 
-  $db->deleteLocation($conn,(int)$_GET['delete_location']); 
+  $jobModel->deleteLocation($conn,(int)$_GET['delete_location']); 
 } 
 
-$categories = $db->getCategories($conn);
-$locations = $db->getLocations($conn); ?> 
+$categories = $jobModel->getCategories($conn);
+$locations = $jobModel->getLocations($conn); ?> 
 ?>
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
 

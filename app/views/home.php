@@ -3,12 +3,14 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once __DIR__ . '/../models/DatabaseConnection.php';
+require_once __DIR__ . '/../models/JobModel.php';
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobModel = new JobModel();
 
-$jobs = $db->getAllJobs($conn);
-$categories = $db->getCategories($conn);
+$jobs = $jobModel->getAllJobs($conn);
+$categories = $jobModel->getCategories($conn);
 
 
 ?>

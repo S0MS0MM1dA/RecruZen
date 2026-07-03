@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../models/DatabaseConnection.php";
+require_once __DIR__ . "/../models/UserModel.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
   header("Location: ../../index.php?page=register");
@@ -55,7 +56,8 @@ if (
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
-$result = $db->signUp($conn, $first_name, $last_name, $email, $password, $role);
+$userModel = new UserModel();
+$result = $userModel->signUp($conn, $first_name, $last_name, $email, $password, $role);
 
 if ($result) {
   $_SESSION["regSuccess"] = "Account Created. Please Login";

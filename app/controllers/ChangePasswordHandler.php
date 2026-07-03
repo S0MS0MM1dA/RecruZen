@@ -24,7 +24,7 @@ $new_password = $_POST['new_password'];
 if ($role === 'admin') {
     $redirect = 'admin_settings';
 } elseif ($role === 'recruiter') {
-    $redirect = 're_settings';
+    $redirect = 'rec_settings';
 } else {
     $redirect = 'js_settings';
 }
@@ -44,14 +44,16 @@ $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $user = $stmt->get_result()->fetch_assoc();
 
-if (!$user || $user['password'] !== $old_password) {
+if (!$user || !password_verify($old_password, $user['password'])) {
     $_SESSION['error'] = "Old password is incorrect.";
     header("Location: ../../index.php?page=$redirect");
     exit;
 }
 
+$hashed_new_password = password_hash($new_password, PASSWORD_DEFAULT);
+
 $stmt = $conn->prepare("UPDATE users SET password = ? WHERE id = ?");
-$stmt->bind_param("si", $new_password, $user_id);
+$stmt->bind_param("si", $hashed_new_password, $user_id);
 $stmt->execute();
 
 $_SESSION['success'] = "Password updated successfully.";

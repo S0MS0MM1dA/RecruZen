@@ -1,10 +1,10 @@
-
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
 require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+require_once __DIR__ . "/../../../models/UserModel.php";
 
 if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
     header("Location: ../../index.php?page=login");
@@ -13,8 +13,9 @@ if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$userModel = new UserModel();
 
-$users = $db -> getAllUsers($conn);
+$users = $userModel -> getAllUsers($conn);
 
 ?>
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
@@ -79,3 +80,4 @@ $users = $db -> getAllUsers($conn);
        </div>
      </div>
    </main>
+   

@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 
 session_start();
 require_once __DIR__ . "/../models/DatabaseConnection.php";
+require_once __DIR__ . "/../models/JobSeekerModel.php";
 
 if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "jobseeker"){
     header("Location: ../../index.php?page=login");
@@ -19,8 +20,9 @@ if ($job_id <= 0) {
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobSeekerModel = new JobSeekerModel();
 
-$result = $db->jobApplication($conn, $user_id, $job_id);
+$result = $jobSeekerModel->jobApplication($conn, $user_id, $job_id);
 
 if ($result) {
     header("Location: ../../index.php?page=job_details&id=$job_id&application_status=success");

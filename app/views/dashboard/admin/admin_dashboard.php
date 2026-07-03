@@ -1,15 +1,28 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+session_start();
 require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+require_once __DIR__ . "/../../../models/UserModel.php";
+require_once __DIR__ . "/../../../models/JobModel.php";
+
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$userModel = new UserModel();
+$jobModel = new JobModel();
 
-$totalUsers     = $db->countTotalUsers($conn);
-$jobseekers     = $db->countJobseekers($conn);
-$recruiters     = $db->countRecruiters($conn);
-$totalJobs      = $db->countTotalJobs($conn);
+$totalUsers     = $userModel->countTotalUsers($conn);
+$jobseekers     = $userModel->countJobseekers($conn);
+$recruiters     = $userModel->countRecruiters($conn);
+$totalJobs      = $jobModel->countTotalJobs($conn);
 
-$recentApps = $db->getRecentApplicationsAdmin($conn);
+$recentApps = $jobModel->getRecentApplicationsAdmin($conn);
 ?>
 
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>
@@ -88,7 +101,7 @@ $recentApps = $db->getRecentApplicationsAdmin($conn);
                       <td><?= date('M d, Y', strtotime($app['posted_date'])) ?></td>
                       <td><?= ucfirst($app['status']) ?></td>
                       <td>
-                        <a class="view-jobs-btn" href="index.php?page=job_details&id=<?= $job['job_id']?>">View</a>
+                        <a class="view-jobs-btn" href="index.php?page=job_details&id=<?= $app['job_id']?>">View</a>
                       </td>
                     </tr>
                     <?php endforeach; ?>

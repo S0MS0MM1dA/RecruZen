@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 
 session_start();
 require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+require_once __DIR__ . "/../../../models/JobSeekerModel.php";
 
 if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "jobseeker"){
     header("Location: ../../index.php?page=login");
@@ -12,9 +13,10 @@ if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "jobseeker"){
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobSeekerModel = new JobSeekerModel();
 
 $user_id = $_SESSION['user']['id'];
-$jobs = $db -> getSavedJob($conn, $user_id);
+$jobs = $jobSeekerModel -> getSavedJob($conn, $user_id);
 $isSaved = isset($_GET['saved']) && $_GET['saved'] == 1;
 ?>
 <?php include __DIR__ . '/../../layouts/sidebar_jobseeker.php'; ?>

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../models/DatabaseConnection.php";
+require_once __DIR__ . "/../models/UserModel.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
   header("Location: ../../index.php?page=admin_login");
@@ -27,7 +28,8 @@ if (isset($_SESSION["emailError"]) || isset($_SESSION["passwordError"])) {
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
-$user = $db->signin($conn, $email);
+$userModel = new UserModel();
+$user = $userModel->signin($conn, $email);
 
 if ($user && password_verify($password, $user["password"])) {
 

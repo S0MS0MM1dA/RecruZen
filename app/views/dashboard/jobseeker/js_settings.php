@@ -1,6 +1,12 @@
 <?php
 session_start();
 require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+
+if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "jobseeker"){
+    header("Location: ../../index.php?page=login");
+    exit;
+}
+
 $password_error = $_SESSION['error'] ?? '';
 $password_success = $_SESSION['success'] ?? '';
 unset($_SESSION['success']);

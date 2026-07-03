@@ -3,13 +3,15 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 require_once __DIR__ . '/../../models/DatabaseConnection.php';
+require_once __DIR__ . '/../../models/JobModel.php';
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobModel = new JobModel();
 
 $job_id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 //$job_id = 2; // For testing purposes only. Replace with actual job ID from GET parameter.
-$job = $db->getJob($conn, $job_id);
+$job = $jobModel->getJob($conn, $job_id);
 
 if (!$job) {
     echo "JOB ID: ";

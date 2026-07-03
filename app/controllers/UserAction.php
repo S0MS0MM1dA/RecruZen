@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once __DIR__ . "/../models/DatabaseConnection.php";
+require_once __DIR__ . "/../models/UserModel.php";
 
 if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
     header("Location: ../../index.php?page=login");
@@ -15,8 +16,9 @@ $user_id = (int)$_POST['user_id'];
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$userModel = new UserModel();
 
-$db->toggleUserStatus($conn, $user_id);
+$userModel->toggleUserStatus($conn, $user_id);
 header("Location: ../../index.php?page=admin_manage_user");
 exit;
 ?>

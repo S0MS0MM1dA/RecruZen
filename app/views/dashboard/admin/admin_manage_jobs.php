@@ -3,18 +3,20 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
-require_once __DIR__ . '/../../../models/DatabaseConnection.php';
-
-$db = new DatabaseConnection();
-$conn = $db->openConnection();
+require_once __DIR__ . "/../../../models/DatabaseConnection.php";
+require_once __DIR__ . "/../../../models/JobModel.php";
 
 if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
     header("Location: ../../index.php?page=login");
     exit;
 }
 
-$pendingJobs = $db->getPendingJobs($conn);
-$allJobs = $db->getAllJobsAdmin($conn);
+$db = new DatabaseConnection();
+$conn = $db->openConnection();
+$jobModel = new JobModel();
+
+$pendingJobs = $jobModel->getPendingJobs($conn);
+$allJobs = $jobModel->getAllJobsAdmin($conn);
 ?>
 
 <?php include __DIR__ . '/../../layouts/sidebar_admin.php'; ?>

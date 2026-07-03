@@ -3,6 +3,7 @@ session_start();
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
 require_once __DIR__ . "/../models/DatabaseConnection.php";
+require_once __DIR__ . "/../models/UserModel.php";
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
   header("Location: ../../index.php?page=login");
@@ -29,7 +30,8 @@ if (isset($_SESSION["emailError"]) || isset($_SESSION["passwordError"])) {
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
-$user = $db->signin($conn, $email);
+$userModel = new UserModel();
+$user = $userModel->signin($conn, $email);
 
 if ($user && password_verify($password, $user["password"])) {
 

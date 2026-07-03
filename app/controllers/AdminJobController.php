@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 
 session_start();
 require_once __DIR__ . '/../models/DatabaseConnection.php';
+require_once __DIR__ . '/../models/JobModel.php';
 
 if(!isset($_SESSION["user"]) || $_SESSION["user"]["role"] !== "admin"){
     header("Location: ../../index.php?page=login");
@@ -25,9 +26,10 @@ if(!$job_id || !$action){
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobModel = new JobModel();
 
 $status =($action === 'approve') ? 'published' : 'rejected';
-$db->updateJobStatus($conn, $job_id, $status);
+$jobModel->updateJobStatus($conn, $job_id, $status);
 
 header("Location: ../../index.php?page=admin_manage_jobs");
 exit;

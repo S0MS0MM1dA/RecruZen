@@ -10,6 +10,7 @@ ini_set('display_errors', 1);
 
 session_start();
 require_once __DIR__ . "/../models/DatabaseConnection.php";
+require_once __DIR__ . "/../models/JobModel.php";
 
 if($_SERVER["REQUEST_METHOD"] !== "POST"){
     header("Location: ../../index.php?page=rec_post_job");
@@ -49,8 +50,9 @@ if (empty($title) || empty($description) ||$category_id <= 0 || $location_id <= 
 
 $db = new DatabaseConnection();
 $conn = $db->openConnection();
+$jobModel = new JobModel();
 
-$result = $db->postJob(
+$result = $jobModel->postJob(
     $conn, $user_id, $category_id, $location_id, $title, $description, $requirements, $benefits, $vacancies, $deadline,
     $skills,  $job_type, $workplace, $min_salary, $max_salary, $status
 );
