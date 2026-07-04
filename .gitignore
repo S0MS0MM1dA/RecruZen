@@ -1,0 +1,26 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Environment / secrets (for when DB credentials move out of DatabaseConnection.php)
+.env
+.env.*
+config.php
+
+# Dependencies (if you add Composer/npm later)
+/vendor/
+/node_modules/
+composer.lock
+
+# Logs
+*.log
+
+# User-uploaded content — keep the folder, ignore what people upload
+/public/uploads/*
+!/public/uploads/.htaccess
+!/public/uploads/.gitkeep
